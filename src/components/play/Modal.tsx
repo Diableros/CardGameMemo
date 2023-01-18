@@ -1,8 +1,10 @@
 import { useContext } from 'react';
-import { AppContext, AppContextType } from '../../context/AppContext';
+import { AppContext } from '../../context/AppContext';
 import { GameStatus } from '../../types/gameStatus';
 import RestartButton from './RestarsButton';
 import { getClockTime, getRealTime } from '../../helpers/getGameTime';
+import winImg from '../../bg_img/win.png';
+import loseImg from '../../bg_img/lose.png';
 
 type ModalPropsType = {
 	gameStatus: GameStatus.win | GameStatus.lose;
@@ -14,8 +16,8 @@ type GameStatusDecodeType = {
 };
 
 const backgroundImage: GameStatusDecodeType = {
-	win: 'win.png',
-	lose: 'lose.png',
+	win: winImg,
+	lose: loseImg,
 };
 
 const endGameTitle: GameStatusDecodeType = {
@@ -24,19 +26,14 @@ const endGameTitle: GameStatusDecodeType = {
 };
 
 const Modal = ({ gameStatus }: ModalPropsType) => {
-	const { state } = useContext<AppContextType>(AppContext);
+	const { state } = useContext(AppContext);
 
 	const { min, sec } = getClockTime(getRealTime(state.gameStartTime));
 
 	return (
 		<div className="modal">
 			<div className="modal__content-box">
-				<div
-					className="modal__img"
-					style={{
-						background: `url(../../img/${backgroundImage[gameStatus]})`,
-					}}
-				/>
+				<img className="modal__img" src={backgroundImage[gameStatus]} />
 				<h1 className="modal__title">{endGameTitle[gameStatus]}</h1>
 				<div className="modal__time-box">
 					<h1 className="modal__time-title">Затраченное время:</h1>

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState, useCallback } from 'react';
-import { AppContext, AppContextType } from '../../context/AppContext';
-import { CardContext, CardContextType } from '../../context/CardContext';
+import { AppContext } from '../../context/AppContext';
+import { CardContext } from '../../context/CardContext';
 import { getShowCardTimers } from '../../helpers/getShowCardTimers';
 import { ActionsEnum } from '../../types/actions';
 import { CardActionsEnum } from '../../types/cardAction';
@@ -14,8 +14,8 @@ type PropsType = {
 
 const PlayCard = ({ card, index }: PropsType) => {
 	const [shirt, setShirt] = useState<boolean>(true);
-	const { state, dispatch } = useContext<AppContextType>(AppContext);
-	const { cardState, cardDispatch } = useContext<CardContextType>(CardContext);
+	const { state, dispatch } = useContext(AppContext);
+	const { cardState, cardDispatch } = useContext(CardContext);
 
 	const handleCardClick = () => {
 		setShirt(false);
