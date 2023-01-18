@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { GameStatus } from '../types/gameStatus';
+import Blocker from './play/Blocker';
 import Modal from './play/Modal';
 import PlayScreen from './play/PlayScreen';
 import SetDifficultScreen from './setDifficult/SetDifficultScreen';
@@ -19,7 +20,12 @@ const GameScreen = () => {
 						return <PlayScreen />;
 
 					case GameStatus.preGame:
-						return <PlayScreen />;
+						return (
+							<>
+								<PlayScreen />
+								<Blocker />
+							</>
+						);
 
 					case GameStatus.win:
 						return (
