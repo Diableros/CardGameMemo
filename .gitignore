@@ -1,0 +1,4 @@
+*.scss
+*.css.map
+**/node_modules
+**/build
