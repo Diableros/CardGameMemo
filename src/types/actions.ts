@@ -4,6 +4,7 @@ import { GameStatus } from './gameStatus';
 import { GameTimeType } from './gameTime';
 
 export enum ActionsEnum {
+	initGame = 'initGame',
 	startGame = 'startGame',
 	setGameStatus = 'setGameStatus',
 	restartGame = 'restartGame',
@@ -11,13 +12,16 @@ export enum ActionsEnum {
 
 export type ActionType =
 	| {
-			type: ActionsEnum.startGame;
+			type: ActionsEnum.initGame;
 			payload: {
 				difficult: DifficultType;
-				gameStartTime: GameTimeType;
-				gameStatus: GameStatus.game;
+				gameStatus: GameStatus.preGame;
 				playerHandCards: CardItemType[];
 			};
+	  }
+	| {
+			type: ActionsEnum.startGame;
+			payload: { gameStatus: GameStatus.game; gameStartTime: GameTimeType };
 	  }
 	| { type: ActionsEnum.setGameStatus; payload: GameStatus }
 	| { type: ActionsEnum.restartGame };

@@ -5,6 +5,12 @@ import { GameStatus } from '../types/gameStatus';
 
 export const Reducer: ReducerType = (state, action): GameStateType => {
 	switch (action.type) {
+		case ActionsEnum.initGame:
+			return {
+				...state,
+				...action.payload,
+			};
+
 		case ActionsEnum.startGame:
 			return {
 				...state,

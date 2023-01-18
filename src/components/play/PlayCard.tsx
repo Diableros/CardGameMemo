@@ -47,6 +47,14 @@ const PlayCard = ({ card, index }: PropsType) => {
 		}, rise);
 		const timeOutDawn = setTimeout(() => {
 			setShirt(true);
+			if (index === 0)
+				dispatch({
+					type: ActionsEnum.startGame,
+					payload: {
+						gameStatus: GameStatus.game,
+						gameStartTime: Date.now() / 1000,
+					},
+				});
 		}, dawn);
 		return () => {
 			clearTimeout(timeOutRise);

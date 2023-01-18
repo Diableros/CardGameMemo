@@ -18,11 +18,10 @@ const StartGametBox = () => {
 	const handleClickStartButton = (): void => {
 		if (diffButton === 0) return;
 		dispatch({
-			type: ActionsEnum.startGame,
+			type: ActionsEnum.initGame,
 			payload: {
 				difficult: diffButton,
-				gameStatus: GameStatus.game,
-				gameStartTime: Math.floor(Date.now() / 1000),
+				gameStatus: GameStatus.preGame,
 				playerHandCards: getPlayerCards(diffButton),
 			},
 		});
