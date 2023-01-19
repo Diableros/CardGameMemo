@@ -5,7 +5,6 @@ import Blocker from './play/Blocker';
 import Modal from './play/Modal';
 import PlayScreen from './play/PlayScreen';
 import SetDifficultScreen from './setDifficult/SetDifficultScreen';
-import Alert from './play/Alert';
 
 const GameScreen = () => {
 	const { state } = useContext(AppContext);
