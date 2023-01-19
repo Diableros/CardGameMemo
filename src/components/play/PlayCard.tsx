@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useCallback } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { CardContext } from '../../context/CardContext';
 import { getShowCardTimers } from '../../helpers/getShowCardTimers';
@@ -17,6 +17,8 @@ const PlayCard = ({ card, index }: PropsType) => {
 	const { state, dispatch } = useContext(AppContext);
 	const { cardState, cardDispatch } = useContext(CardContext);
 
+	const { rise, dawn, rotateTime } = getShowCardTimers(index, state.difficult);
+
 	const handleCardClick = () => {
 		setShirt(false);
 
@@ -30,16 +32,25 @@ const PlayCard = ({ card, index }: PropsType) => {
 				type: CardActionsEnum.secondCardOpen,
 			});
 		} else {
-			dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.lose });
+			const timeOut = setTimeout(() => {
+				dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.lose });
+			}, rotateTime);
+			return () => {
+				clearTimeout(timeOut);
+			};
 		}
 	};
 
 	useEffect(() => {
-		if (state.playerHandCards.length === cardState.cardsOpen)
-			dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.win });
+		if (state.playerHandCards.length === cardState.cardsOpen) {
+			const timeOut = setTimeout(() => {
+				dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.win });
+			}, rotateTime);
+			return () => {
+				clearTimeout(timeOut);
+			};
+		}
 	}, [cardState.cardsOpen]);
-
-	const { rise, dawn } = getShowCardTimers(index, state.difficult);
 
 	useEffect(() => {
 		const timeOutRise = setTimeout(() => {

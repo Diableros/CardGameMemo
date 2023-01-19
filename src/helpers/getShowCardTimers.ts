@@ -3,10 +3,12 @@ import { DifficultType } from '../types/difficult';
 const delayShowCardTime: number = 500;
 const timeShiftMultiplier: number = 80;
 const showCardTime: number = 5000;
+const rotateTime: number = 700; // equal transition in style.scss .card
 
 type getShowCardTimersType = {
 	rise: number;
 	dawn: number;
+	rotateTime: number;
 };
 
 export const getShowCardTimers = (
@@ -21,5 +23,5 @@ export const getShowCardTimers = (
 		delayShowCardTime * difficult -
 		timeShift;
 
-	return { rise, dawn };
+	return { rise, dawn, rotateTime };
 };
