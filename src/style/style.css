@@ -224,7 +224,6 @@ body {
   transform: rotateY(-180deg);
 }
 .card__back {
-  background: url("../../public/img/shirt.svg");
   transform: rotateY(-180deg);
 }
 .card__back--shirt {
@@ -307,8 +306,7 @@ body {
   position: absolute;
   top: 10%;
   margin: 0 auto;
-  height: 80px;
-  width: 320px;
+  padding: 30px;
   border-radius: 12px;
   background-color: #f44;
   display: flex;
@@ -317,5 +315,5 @@ body {
 }
 .alert__message {
   color: #fff;
-  font-size: 24px;
+  font-size: 1.5rem;
 }/*# sourceMappingURL=style.css.map */

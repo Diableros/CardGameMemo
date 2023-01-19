@@ -6,6 +6,7 @@ import { ActionsEnum } from '../../types/actions';
 import { CardActionsEnum } from '../../types/cardAction';
 import { CardItemType } from '../../types/cardItem';
 import { GameStatus } from '../../types/gameStatus';
+import { images } from '../../img';
 
 type PropsType = {
 	card: CardItemType;
@@ -81,13 +82,14 @@ const PlayCard = ({ card, index }: PropsType) => {
 				handleCardClick();
 			}}
 		>
-			<div
+			<img
 				className={shirt ? 'card__front card__front--shirt' : 'card__front'}
-				style={{ backgroundImage: `url('../img/${card.R}${card.S}.svg')` }}
-			></div>
-			<div
+				src={images[`card${card.R}${card.S}`]}
+			></img>
+			<img
 				className={shirt ? 'card__back card__back--shirt' : 'card__back'}
-			></div>
+				src={images.shirt}
+			></img>
 		</div>
 	);
 };
