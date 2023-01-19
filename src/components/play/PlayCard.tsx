@@ -63,7 +63,7 @@ const PlayCard = ({ card, index }: PropsType) => {
 					type: ActionsEnum.startGame,
 					payload: {
 						gameStatus: GameStatus.game,
-						gameStartTime: Date.now() / 1000,
+						gameStartTime: Math.floor(Date.now() / 1000),
 					},
 				});
 		}, dawn);

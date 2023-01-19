@@ -6,6 +6,7 @@ const initGameState = (): GameStateType => ({
 	difficult: 0,
 	gameStartTime: 0,
 	playerHandCards: [],
+	showAlert: false,
 });
 
 export default initGameState;

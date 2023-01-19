@@ -1,4 +1,4 @@
-import { useState, useContext, memo } from 'react';
+import { useState, useContext, memo, useEffect } from 'react';
 import DifficultButton from './DifficultButton';
 import { DifficultType } from '../../types/difficult';
 import { AppContext } from '../../context/AppContext';
@@ -11,12 +11,16 @@ const difficultButtonsArr: DifficultType[] = [1, 2, 3];
 const MemoizedDifficultButton = memo(DifficultButton);
 
 const StartGametBox = () => {
-	const { dispatch } = useContext(AppContext);
+	const { state, dispatch } = useContext(AppContext);
 
 	const [diffButton, setDiffButton] = useState<DifficultType>(0);
 
 	const handleClickStartButton = (): void => {
-		if (diffButton === 0) return;
+		if (diffButton === 0) {
+			dispatch({ type: ActionsEnum.showAlert });
+			return;
+		}
+
 		dispatch({
 			type: ActionsEnum.initGame,
 			payload: {
@@ -26,6 +30,15 @@ const StartGametBox = () => {
 			},
 		});
 	};
+
+	useEffect(() => {
+		const timeOut = setTimeout(() => {
+			dispatch({ type: ActionsEnum.hideAlert });
+		}, 2000);
+		return () => {
+			clearTimeout(timeOut);
+		};
+	}, [state.showAlert]);
 
 	return (
 		<>

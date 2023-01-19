@@ -8,4 +8,5 @@ export type GameStateType = {
 	difficult: DifficultType;
 	gameStartTime: GameTimeType;
 	playerHandCards: CardItemType[];
+	showAlert: boolean;
 };
