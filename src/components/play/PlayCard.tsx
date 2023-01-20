@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useCallback } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { CardContext } from '../../context/CardContext';
 import { getShowCardTimers } from '../../helpers/getShowCardTimers';
@@ -6,6 +6,7 @@ import { ActionsEnum } from '../../types/actions';
 import { CardActionsEnum } from '../../types/cardAction';
 import { CardItemType } from '../../types/cardItem';
 import { GameStatus } from '../../types/gameStatus';
+import { images } from '../../img';
 
 type PropsType = {
 	card: CardItemType;
@@ -16,6 +17,8 @@ const PlayCard = ({ card, index }: PropsType) => {
 	const [shirt, setShirt] = useState<boolean>(true);
 	const { state, dispatch } = useContext(AppContext);
 	const { cardState, cardDispatch } = useContext(CardContext);
+
+	const { rise, dawn, rotateTime } = getShowCardTimers(index, state.difficult);
 
 	const handleCardClick = () => {
 		setShirt(false);
@@ -30,16 +33,25 @@ const PlayCard = ({ card, index }: PropsType) => {
 				type: CardActionsEnum.secondCardOpen,
 			});
 		} else {
-			dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.lose });
+			const timeOut = setTimeout(() => {
+				dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.lose });
+			}, rotateTime);
+			return () => {
+				clearTimeout(timeOut);
+			};
 		}
 	};
 
 	useEffect(() => {
-		if (state.playerHandCards.length === cardState.cardsOpen)
-			dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.win });
+		if (state.playerHandCards.length === cardState.cardsOpen) {
+			const timeOut = setTimeout(() => {
+				dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.win });
+			}, rotateTime);
+			return () => {
+				clearTimeout(timeOut);
+			};
+		}
 	}, [cardState.cardsOpen]);
-
-	const { rise, dawn } = getShowCardTimers(index, state.difficult);
 
 	useEffect(() => {
 		const timeOutRise = setTimeout(() => {
@@ -52,7 +64,7 @@ const PlayCard = ({ card, index }: PropsType) => {
 					type: ActionsEnum.startGame,
 					payload: {
 						gameStatus: GameStatus.game,
-						gameStartTime: Date.now() / 1000,
+						gameStartTime: Math.floor(Date.now() / 1000),
 					},
 				});
 		}, dawn);
@@ -70,13 +82,14 @@ const PlayCard = ({ card, index }: PropsType) => {
 				handleCardClick();
 			}}
 		>
-			<div
+			<img
 				className={shirt ? 'card__front card__front--shirt' : 'card__front'}
-				style={{ backgroundImage: `url('../img/${card.R}${card.S}.svg')` }}
-			></div>
-			<div
+				src={images[`card${card.R}${card.S}`]}
+			></img>
+			<img
 				className={shirt ? 'card__back card__back--shirt' : 'card__back'}
-			></div>
+				src={images.shirt}
+			></img>
 		</div>
 	);
 };

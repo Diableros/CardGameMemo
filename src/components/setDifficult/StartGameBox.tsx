@@ -10,13 +10,17 @@ const difficultButtonsArr: DifficultType[] = [1, 2, 3];
 
 const MemoizedDifficultButton = memo(DifficultButton);
 
-const StartGametBox = () => {
+const StartGameBox = () => {
 	const { dispatch } = useContext(AppContext);
 
 	const [diffButton, setDiffButton] = useState<DifficultType>(0);
 
 	const handleClickStartButton = (): void => {
-		if (diffButton === 0) return;
+		if (diffButton === 0) {
+			dispatch({ type: ActionsEnum.showAlert });
+			return;
+		}
+
 		dispatch({
 			type: ActionsEnum.initGame,
 			payload: {
@@ -49,4 +53,4 @@ const StartGametBox = () => {
 	);
 };
 
-export default StartGametBox;
+export default StartGameBox;

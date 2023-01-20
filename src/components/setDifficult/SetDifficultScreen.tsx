@@ -1,10 +1,16 @@
-import StartGametBox from './StartGameBox';
+import Alert from '../play/Alert';
+import StartGameBox from './StartGameBox';
 
-const SetDifficultScreen = () => {
+type PorpsType = {
+	alert: boolean;
+};
+
+const SetDifficultScreen = ({ alert }: PorpsType) => {
 	return (
 		<div className="start-screen">
 			<h1 className="start-screen__header">Выбери сложность</h1>
-			<StartGametBox />
+			<StartGameBox />
+			{alert ? <Alert>Выберите сложность!</Alert> : null}
 		</div>
 	);
 };

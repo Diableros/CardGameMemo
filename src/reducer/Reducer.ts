@@ -2,6 +2,7 @@ import { GameStateType } from '../types/gameState';
 import { ReducerType } from '../types/reducer';
 import { ActionsEnum } from '../types/actions';
 import { GameStatus } from '../types/gameStatus';
+import initGameState from 'src/context/initGameState';
 
 export const Reducer: ReducerType = (state, action): GameStateType => {
 	switch (action.type) {
@@ -24,10 +25,18 @@ export const Reducer: ReducerType = (state, action): GameStateType => {
 			};
 
 		case ActionsEnum.restartGame:
+			return initGameState();
+
+		case ActionsEnum.showAlert:
 			return {
 				...state,
-				difficult: 0,
-				gameStatus: GameStatus.lobby,
+				showAlert: true,
+			};
+
+		case ActionsEnum.hideAlert:
+			return {
+				...state,
+				showAlert: false,
 			};
 
 		default:

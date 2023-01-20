@@ -8,6 +8,8 @@ export enum ActionsEnum {
 	startGame = 'startGame',
 	setGameStatus = 'setGameStatus',
 	restartGame = 'restartGame',
+	showAlert = 'showAlert',
+	hideAlert = 'hideAlert',
 }
 
 export type ActionType =
@@ -24,4 +26,6 @@ export type ActionType =
 			payload: { gameStatus: GameStatus.game; gameStartTime: GameTimeType };
 	  }
 	| { type: ActionsEnum.setGameStatus; payload: GameStatus }
-	| { type: ActionsEnum.restartGame };
+	| { type: ActionsEnum.restartGame }
+	| { type: ActionsEnum.showAlert }
+	| { type: ActionsEnum.hideAlert };
