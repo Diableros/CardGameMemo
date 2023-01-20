@@ -177,6 +177,10 @@ body {
 			transform: rotateY(-360deg);
 		}
 	}
+
+	&__click-ignore {
+		pointer-events: none;
+	}
 }
 
 .modal {
@@ -273,5 +277,19 @@ body {
 	&__message {
 		color: #fff;
 		font-size: 1.5rem;
+	}
+}
+
+.card-columns-difficulty {
+	&_1 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	&_2 {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	&_3 {
+		grid-template-columns: repeat(6, 1fr);
 	}
 }

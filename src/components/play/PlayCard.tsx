@@ -7,6 +7,7 @@ import { CardActionsEnum } from '../../types/cardAction';
 import { CardItemType } from '../../types/cardItem';
 import { GameStatus } from '../../types/gameStatus';
 import { images } from '../../img';
+import cn from 'classnames';
 
 type PropsType = {
 	card: CardItemType;
@@ -18,7 +19,7 @@ const PlayCard = ({ card, index }: PropsType) => {
 	const { state, dispatch } = useContext(AppContext);
 	const { cardState, cardDispatch } = useContext(CardContext);
 
-	const { rise, dawn, delayBeforeModal } = getShowCardTimers(
+	const { rise, dawn, DELAY_BEFORE_MODAL } = getShowCardTimers(
 		index,
 		state.difficult
 	);
@@ -38,7 +39,7 @@ const PlayCard = ({ card, index }: PropsType) => {
 		} else {
 			const timeOut = setTimeout(() => {
 				dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.lose });
-			}, delayBeforeModal);
+			}, DELAY_BEFORE_MODAL);
 			return () => {
 				clearTimeout(timeOut);
 			};
@@ -49,7 +50,7 @@ const PlayCard = ({ card, index }: PropsType) => {
 		if (state.playerHandCards.length === cardState.cardsOpen) {
 			const timeOut = setTimeout(() => {
 				dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.win });
-			}, delayBeforeModal);
+			}, DELAY_BEFORE_MODAL);
 			return () => {
 				clearTimeout(timeOut);
 			};
@@ -79,8 +80,9 @@ const PlayCard = ({ card, index }: PropsType) => {
 
 	return (
 		<div
-			className="playfield__card card hover-scale"
-			style={!shirt ? { pointerEvents: 'none' } : { pointerEvents: 'all' }}
+			className={cn('playfield__card', 'card', 'hover-scale', {
+				'card__click-ignore': !shirt,
+			})}
 			onClick={() => {
 				handleCardClick();
 			}}

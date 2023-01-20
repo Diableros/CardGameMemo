@@ -18,18 +18,18 @@ export const getPlayerCards = (difficult: number): CardItemType[] => {
 		});
 	});
 
-	const playerCardPairs: Set<CardItemType> = new Set();
+	const playerCardPairs: CardItemType[] = [];
 
-	while (playerCardPairs.size < pairsCardsQuantity) {
-		const receivedCard: CardItemType =
-			cardDeck[Math.floor(Math.random() * cardDeck.length)];
+	while (playerCardPairs.length < pairsCardsQuantity) {
+		const receivedCard: CardItemType[] = cardDeck.splice(
+			Math.floor(Math.random() * cardDeck.length),
+			1
+		);
 
-		playerCardPairs.add(receivedCard);
+		playerCardPairs.push(...receivedCard);
 	}
 
-	const playerCards: CardItemType[] = [];
-
-	Array.from(playerCardPairs, (elem) => playerCards.push(elem, elem));
+	const playerCards: CardItemType[] = [...playerCardPairs, ...playerCardPairs];
 
 	const shuffledPlayerCards: CardItemType[] = playerCards.sort(
 		() => Math.random() - 0.5
