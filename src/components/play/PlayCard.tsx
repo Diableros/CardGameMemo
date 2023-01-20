@@ -18,7 +18,10 @@ const PlayCard = ({ card, index }: PropsType) => {
 	const { state, dispatch } = useContext(AppContext);
 	const { cardState, cardDispatch } = useContext(CardContext);
 
-	const { rise, dawn, rotateTime } = getShowCardTimers(index, state.difficult);
+	const { rise, dawn, delayBeforeModal } = getShowCardTimers(
+		index,
+		state.difficult
+	);
 
 	const handleCardClick = () => {
 		setShirt(false);
@@ -35,7 +38,7 @@ const PlayCard = ({ card, index }: PropsType) => {
 		} else {
 			const timeOut = setTimeout(() => {
 				dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.lose });
-			}, rotateTime);
+			}, delayBeforeModal);
 			return () => {
 				clearTimeout(timeOut);
 			};
@@ -46,7 +49,7 @@ const PlayCard = ({ card, index }: PropsType) => {
 		if (state.playerHandCards.length === cardState.cardsOpen) {
 			const timeOut = setTimeout(() => {
 				dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.win });
-			}, rotateTime);
+			}, delayBeforeModal);
 			return () => {
 				clearTimeout(timeOut);
 			};
