@@ -34,8 +34,6 @@ import cardTC from './TC.svg';
 import cardTD from './TD.svg';
 import cardTH from './TH.svg';
 import cardTS from './TS.svg';
-import win from './win.png';
-import lose from './lose.png';
 import shirt from './shirt.svg';
 
 export const images = {
@@ -75,7 +73,5 @@ export const images = {
 	cardTD,
 	cardTH,
 	cardTS,
-	win,
-	lose,
 	shirt,
 };

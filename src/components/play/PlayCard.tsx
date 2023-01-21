@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { CardContext } from '../../context/CardContext';
 import { getShowCardTimers } from '../../helpers/getShowCardTimers';
-import { ActionsEnum } from '../../types/actions';
-import { CardActionsEnum } from '../../types/cardAction';
+import { GameAction } from '../../types/gameAction';
+import { CardAction } from '../../types/cardAction';
 import { CardItemType } from '../../types/cardItem';
 import { GameStatus } from '../../types/gameStatus';
-import { images } from '../../img';
+import { images } from '../../img/cardsImages';
 import cn from 'classnames';
 
 type PropsType = {
@@ -19,7 +19,7 @@ const PlayCard = ({ card, index }: PropsType) => {
 	const { state, dispatch } = useContext(AppContext);
 	const { cardState, cardDispatch } = useContext(CardContext);
 
-	const { rise, dawn, DELAY_BEFORE_MODAL } = getShowCardTimers(
+	const { openCard, closeCard, DELAY_BEFORE_MODAL } = getShowCardTimers(
 		index,
 		state.difficult
 	);
@@ -29,16 +29,16 @@ const PlayCard = ({ card, index }: PropsType) => {
 
 		if (!cardState.cardPrev) {
 			cardDispatch({
-				type: CardActionsEnum.firstCardOpen,
+				type: CardAction.FirstCardOpen,
 				payload: card,
 			});
 		} else if (cardState.cardPrev === card) {
 			cardDispatch({
-				type: CardActionsEnum.secondCardOpen,
+				type: CardAction.SecondCardOpen,
 			});
 		} else {
 			const timeOut = setTimeout(() => {
-				dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.lose });
+				dispatch({ type: GameAction.SetGameStatus, payload: GameStatus.lose });
 			}, DELAY_BEFORE_MODAL);
 			return () => {
 				clearTimeout(timeOut);
@@ -49,7 +49,7 @@ const PlayCard = ({ card, index }: PropsType) => {
 	useEffect(() => {
 		if (state.playerHandCards.length === cardState.cardsOpen) {
 			const timeOut = setTimeout(() => {
-				dispatch({ type: ActionsEnum.setGameStatus, payload: GameStatus.win });
+				dispatch({ type: GameAction.SetGameStatus, payload: GameStatus.win });
 			}, DELAY_BEFORE_MODAL);
 			return () => {
 				clearTimeout(timeOut);
@@ -60,18 +60,18 @@ const PlayCard = ({ card, index }: PropsType) => {
 	useEffect(() => {
 		const timeOutRise = setTimeout(() => {
 			setShirt(false);
-		}, rise);
+		}, openCard);
 		const timeOutDawn = setTimeout(() => {
 			setShirt(true);
 			if (index === 0)
 				dispatch({
-					type: ActionsEnum.startGame,
+					type: GameAction.StartGame,
 					payload: {
 						gameStatus: GameStatus.game,
 						gameStartTime: Math.floor(Date.now() / 1000),
 					},
 				});
-		}, dawn);
+		}, closeCard);
 		return () => {
 			clearTimeout(timeOutRise);
 			clearTimeout(timeOutDawn);

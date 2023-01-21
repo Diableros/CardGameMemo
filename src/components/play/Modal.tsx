@@ -3,7 +3,8 @@ import { AppContext } from '../../context/AppContext';
 import { GameStatus } from '../../types/gameStatus';
 import RestartButton from './RestarsButton';
 import { getClockTime, getRealTime } from '../../helpers/getGameTime';
-import { images } from '../../img';
+import winImg from '../../img/win.png';
+import loseImg from '../../img/lose.png';
 
 type ModalPropsType = {
 	gameStatus: GameStatus.win | GameStatus.lose;
@@ -15,8 +16,8 @@ type GameStatusDecodeType = {
 };
 
 const backgroundImage: GameStatusDecodeType = {
-	win: images.win,
-	lose: images.lose,
+	win: winImg,
+	lose: loseImg,
 };
 
 const endGameTitle: GameStatusDecodeType = {

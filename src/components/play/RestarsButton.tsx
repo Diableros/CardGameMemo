@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
-import { ActionsEnum } from '../../types/actions';
+import { GameAction } from '../../types/gameAction';
 
 type PropsType = {
 	title: string;
@@ -14,7 +14,7 @@ const RestartButton = ({ title }: PropsType) => {
 			className="game-screen__restart hover-scale"
 			onClick={() => {
 				dispatch({
-					type: ActionsEnum.restartGame,
+					type: GameAction.RestartGame,
 				});
 			}}
 		>

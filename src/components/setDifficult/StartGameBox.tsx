@@ -2,7 +2,7 @@ import { useState, useContext, memo } from 'react';
 import DifficultButton from './DifficultButton';
 import { DifficultType } from '../../types/difficult';
 import { AppContext } from '../../context/AppContext';
-import { ActionsEnum } from '../../types/actions';
+import { GameAction } from '../../types/gameAction';
 import { GameStatus } from '../../types/gameStatus';
 import { getPlayerCards } from '../../helpers/getPlayerCards';
 
@@ -17,12 +17,12 @@ const StartGameBox = () => {
 
 	const handleClickStartButton = (): void => {
 		if (diffButton === 0) {
-			dispatch({ type: ActionsEnum.showAlert });
+			dispatch({ type: GameAction.ShowAlert });
 			return;
 		}
 
 		dispatch({
-			type: ActionsEnum.initGame,
+			type: GameAction.InitGame,
 			payload: {
 				difficult: diffButton,
 				gameStatus: GameStatus.preGame,

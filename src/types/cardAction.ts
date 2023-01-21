@@ -1,15 +1,15 @@
 import { CardItemType } from './cardItem';
 
-export enum CardActionsEnum {
-	firstCardOpen = 'firstCardOpen',
-	secondCardOpen = 'secondCardOpen',
+export enum CardAction {
+	FirstCardOpen = 'FirstCardOpen',
+	SecondCardOpen = 'SecondCardOpen',
 }
 
 export type CardActionType =
 	| {
-			type: CardActionsEnum.firstCardOpen;
+			type: CardAction.FirstCardOpen;
 			payload: CardItemType;
 	  }
 	| {
-			type: CardActionsEnum.secondCardOpen;
+			type: CardAction.SecondCardOpen;
 	  };

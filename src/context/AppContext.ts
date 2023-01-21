@@ -1,11 +1,11 @@
 import React, { createContext } from 'react';
 import initGameState from './initGameState';
 import { GameStateType } from '../types/gameState';
-import { ActionType } from '../types/actions';
+import { GameAction, GameActionType } from '../types/gameAction';
 
 export type AppContextType = {
 	state: GameStateType;
-	dispatch: React.Dispatch<ActionType>;
+	dispatch: React.Dispatch<GameActionType>;
 };
 
 export const AppContext = createContext<AppContextType>({

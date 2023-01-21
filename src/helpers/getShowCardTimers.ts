@@ -6,8 +6,8 @@ const SHOW_CARD_TIME: number = 5000;
 const DELAY_BEFORE_MODAL: number = 1000;
 
 type getShowCardTimersType = {
-	rise: number;
-	dawn: number;
+	openCard: number;
+	closeCard: number;
 	DELAY_BEFORE_MODAL: number;
 };
 
@@ -16,12 +16,12 @@ export const getShowCardTimers = (
 	difficult: DifficultType
 ): getShowCardTimersType => {
 	const timeShift = cardIndex * TIME_SHIFT_MULTIPLIER;
-	const rise = DELAY_SHOW_CARD_TIME + timeShift;
-	const dawn =
+	const openCard = DELAY_SHOW_CARD_TIME + timeShift;
+	const closeCard =
 		DELAY_SHOW_CARD_TIME +
 		SHOW_CARD_TIME +
 		DELAY_SHOW_CARD_TIME * difficult -
 		timeShift;
 
-	return { rise, dawn, DELAY_BEFORE_MODAL };
+	return { openCard, closeCard, DELAY_BEFORE_MODAL };
 };

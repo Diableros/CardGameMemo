@@ -1,39 +1,38 @@
 import { GameStateType } from '../types/gameState';
 import { ReducerType } from '../types/reducer';
-import { ActionsEnum } from '../types/actions';
-import { GameStatus } from '../types/gameStatus';
+import { GameAction } from '../types/gameAction';
 import initGameState from 'src/context/initGameState';
 
 export const Reducer: ReducerType = (state, action): GameStateType => {
 	switch (action.type) {
-		case ActionsEnum.initGame:
+		case GameAction.InitGame:
 			return {
 				...state,
 				...action.payload,
 			};
 
-		case ActionsEnum.startGame:
+		case GameAction.StartGame:
 			return {
 				...state,
 				...action.payload,
 			};
 
-		case ActionsEnum.setGameStatus:
+		case GameAction.SetGameStatus:
 			return {
 				...state,
 				gameStatus: action.payload,
 			};
 
-		case ActionsEnum.restartGame:
+		case GameAction.RestartGame:
 			return initGameState();
 
-		case ActionsEnum.showAlert:
+		case GameAction.ShowAlert:
 			return {
 				...state,
 				showAlert: true,
 			};
 
-		case ActionsEnum.hideAlert:
+		case GameAction.HideAlert:
 			return {
 				...state,
 				showAlert: false,

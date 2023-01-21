@@ -1,6 +1,6 @@
 import { ReactNode, useContext, useEffect } from 'react';
 import { AppContext } from 'src/context/AppContext';
-import { ActionsEnum } from 'src/types/actions';
+import { GameAction } from 'src/types/gameAction';
 
 type PorpsType = {
 	children: ReactNode;
@@ -11,7 +11,7 @@ const Alert = ({ children }: PorpsType) => {
 
 	useEffect(() => {
 		const timeOut = setTimeout(() => {
-			dispatch({ type: ActionsEnum.hideAlert });
+			dispatch({ type: GameAction.HideAlert });
 		}, 2000);
 		return () => {
 			clearTimeout(timeOut);

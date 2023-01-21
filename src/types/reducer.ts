@@ -1,7 +1,7 @@
-import { ActionType } from './actions';
+import { GameActionType } from './gameAction';
 import { GameStateType } from './gameState';
 
 export type ReducerType = (
 	state: GameStateType,
-	action: ActionType
+	action: GameActionType
 ) => GameStateType;
