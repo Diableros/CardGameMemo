@@ -1,12 +1,7 @@
 import GameScreen from './components/GameScreen';
-import Providers from './context/Providers';
 
 const App = () => {
-	return (
-		<Providers>
-			<GameScreen />
-		</Providers>
-	);
+	return <GameScreen />;
 };
 
 export default App;

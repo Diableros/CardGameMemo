@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
-import { GameContext } from '../../context/GameContext';
-import { CardContext } from '../../context/CardContext';
+import { useEffect, useState } from 'react';
+import { useGameContext } from '../../context/GameContext';
+import { useCardContext } from '../../context/CardContext';
 import { getShowCardTimers } from '../../helpers/getShowCardTimers';
 import { GameAction } from '../../types/gameAction';
 import { CardAction } from '../../types/cardAction';
@@ -16,23 +16,23 @@ type PropsType = {
 
 const PlayCard = ({ card, index }: PropsType) => {
 	const [shirt, setShirt] = useState<boolean>(true);
-	const { state, dispatch } = useContext(GameContext);
-	const { cardState, cardDispatch } = useContext(CardContext);
+	const { difficult, playerHandCards, dispatch } = useGameContext();
+	const { cardPrev, cardsOpen, cardDispatch } = useCardContext();
 
 	const { openCard, closeCard, DELAY_BEFORE_MODAL } = getShowCardTimers(
 		index,
-		state.difficult
+		difficult
 	);
 
 	const handleCardClick = () => {
 		setShirt(false);
 
-		if (!cardState.cardPrev) {
+		if (!cardPrev) {
 			cardDispatch({
 				type: CardAction.FirstCardOpen,
 				payload: card,
 			});
-		} else if (cardState.cardPrev === card) {
+		} else if (cardPrev === card) {
 			cardDispatch({
 				type: CardAction.SecondCardOpen,
 			});
@@ -47,7 +47,7 @@ const PlayCard = ({ card, index }: PropsType) => {
 	};
 
 	useEffect(() => {
-		if (state.playerHandCards.length === cardState.cardsOpen) {
+		if (playerHandCards.length === cardsOpen) {
 			const timeOut = setTimeout(() => {
 				dispatch({ type: GameAction.SetGameStatus, payload: GameStatus.win });
 			}, DELAY_BEFORE_MODAL);
@@ -55,7 +55,7 @@ const PlayCard = ({ card, index }: PropsType) => {
 				clearTimeout(timeOut);
 			};
 		}
-	}, [cardState.cardsOpen]);
+	}, [cardsOpen]);
 
 	useEffect(() => {
 		const timeOutRise = setTimeout(() => {

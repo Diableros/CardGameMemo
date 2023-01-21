@@ -1,13 +1,9 @@
-import { ReactNode, useContext, useEffect } from 'react';
-import { GameContext } from 'src/context/GameContext';
+import { ReactNode, useEffect } from 'react';
+import { useGameContext } from 'src/context/GameContext';
 import { GameAction } from 'src/types/gameAction';
 
-type PorpsType = {
-	children: ReactNode;
-};
-
-const Alert = ({ children }: PorpsType) => {
-	const { state, dispatch } = useContext(GameContext);
+const Alert = ({ children }: { children: ReactNode }) => {
+	const { showAlert, dispatch } = useGameContext();
 
 	useEffect(() => {
 		const timeOut = setTimeout(() => {
@@ -16,7 +12,7 @@ const Alert = ({ children }: PorpsType) => {
 		return () => {
 			clearTimeout(timeOut);
 		};
-	}, [state.showAlert]);
+	}, [showAlert]);
 
 	return (
 		<div className="alert">

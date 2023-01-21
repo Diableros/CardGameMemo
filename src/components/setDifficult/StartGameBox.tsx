@@ -1,17 +1,21 @@
-import { useState, useContext, memo } from 'react';
+import { useState, memo } from 'react';
 import DifficultButton from './DifficultButton';
 import { DifficultType } from '../../types/difficult';
-import { GameContext } from '../../context/GameContext';
+import { useGameContext } from '../../context/GameContext';
 import { GameAction } from '../../types/gameAction';
 import { GameStatus } from '../../types/gameStatus';
 import { getPlayerCards } from '../../helpers/getPlayerCards';
+import { useCardContext } from 'src/context/CardContext';
+import { CardAction } from 'src/types/cardAction';
 
 const difficultButtonsArr: DifficultType[] = [1, 2, 3];
 
 const MemoizedDifficultButton = memo(DifficultButton);
 
 const StartGameBox = () => {
-	const { dispatch } = useContext(GameContext);
+	const { dispatch } = useGameContext();
+
+	const { cardDispatch } = useCardContext();
 
 	const [diffButton, setDiffButton] = useState<DifficultType>(0);
 
@@ -20,6 +24,8 @@ const StartGameBox = () => {
 			dispatch({ type: GameAction.ShowAlert });
 			return;
 		}
+
+		cardDispatch({ type: CardAction.InitCardContext });
 
 		dispatch({
 			type: GameAction.InitGame,

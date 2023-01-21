@@ -1,9 +1,9 @@
 import { GameStateType } from '../types/gameState';
-import { ReducerType } from '../types/reducer';
+import { GameReducerType } from '../types/gameReducer';
 import { GameAction } from '../types/gameAction';
 import initGameState from 'src/context/initGameState';
 
-export const Reducer: ReducerType = (state, action): GameStateType => {
+export const gameReducer: GameReducerType = (state, action): GameStateType => {
 	switch (action.type) {
 		case GameAction.InitGame:
 			return {

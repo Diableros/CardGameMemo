@@ -5,5 +5,3 @@ export enum GameStatus {
 	win = 'win',
 	lose = 'lose',
 }
-
-export type GameStatusType = GameStatus;

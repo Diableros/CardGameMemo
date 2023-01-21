@@ -1,20 +1,12 @@
-import { ReactNode, useReducer } from 'react';
-import { GameContext } from './GameContext';
-import initGameState from './initGameState';
-import { Reducer } from '../reducer/Reducer';
-import { ReducerType } from '../types/reducer';
+import { ReactNode } from 'react';
+import { CardProvider } from './CardContext';
+import { GameProvider } from './GameContext';
 
-type PropsType = {
-	children: ReactNode;
-};
-
-const Providers = ({ children }: PropsType) => {
-	const [state, dispatch] = useReducer<ReducerType>(Reducer, initGameState);
-
+const Providers = ({ children }: { children: ReactNode }) => {
 	return (
-		<GameContext.Provider value={{ state, dispatch }}>
-			{children}
-		</GameContext.Provider>
+		<GameProvider>
+			<CardProvider>{children}</CardProvider>
+		</GameProvider>
 	);
 };
 

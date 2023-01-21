@@ -1,8 +1,9 @@
+import { initCardState } from 'src/context/initCardState';
 import { CardAction } from '../types/cardAction';
 import { CardReducerType } from '../types/cardReducer';
 import { CardStateType } from '../types/cardState';
 
-export const CardReducer: CardReducerType = (
+export const cardReducer: CardReducerType = (
 	cardState,
 	cardAction
 ): CardStateType => {
@@ -20,6 +21,9 @@ export const CardReducer: CardReducerType = (
 				cardPrev: undefined,
 				cardsOpen: cardState.cardsOpen + 1,
 			};
+
+		case CardAction.InitCardContext:
+			return initCardState;
 
 		default:
 			return { ...cardState };

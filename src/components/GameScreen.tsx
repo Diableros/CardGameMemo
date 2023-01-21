@@ -1,5 +1,4 @@
-import { useContext } from 'react';
-import { GameContext } from '../context/GameContext';
+import { useGameContext } from '../context/GameContext';
 import { GameStatus } from '../types/gameStatus';
 import Blocker from './play/Blocker';
 import Modal from './play/Modal';
@@ -7,14 +6,14 @@ import PlayScreen from './play/PlayScreen';
 import SetDifficultScreen from './setDifficult/SetDifficultScreen';
 
 const GameScreen = () => {
-	const { state } = useContext(GameContext);
+	const { showAlert, gameStatus } = useGameContext();
 
 	return (
 		<main className="main">
 			{(() => {
-				switch (state.gameStatus) {
+				switch (gameStatus) {
 					case GameStatus.lobby:
-						return <SetDifficultScreen alert={state.showAlert} />;
+						return <SetDifficultScreen alert={showAlert} />;
 
 					case GameStatus.game:
 						return <PlayScreen />;
@@ -44,7 +43,7 @@ const GameScreen = () => {
 						);
 
 					default:
-						return <SetDifficultScreen alert={state.showAlert} />;
+						return <SetDifficultScreen alert={showAlert} />;
 				}
 			})()}
 		</main>

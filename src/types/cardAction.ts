@@ -3,6 +3,7 @@ import { CardItemType } from './cardItem';
 export enum CardAction {
 	FirstCardOpen = 'FirstCardOpen',
 	SecondCardOpen = 'SecondCardOpen',
+	InitCardContext = 'InitCardContext',
 }
 
 export type CardActionType =
@@ -12,4 +13,7 @@ export type CardActionType =
 	  }
 	| {
 			type: CardAction.SecondCardOpen;
+	  }
+	| {
+			type: CardAction.InitCardContext;
 	  };
