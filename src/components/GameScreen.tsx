@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AppContext } from '../context/AppContext';
+import { GameContext } from '../context/GameContext';
 import { GameStatus } from '../types/gameStatus';
 import Blocker from './play/Blocker';
 import Modal from './play/Modal';
@@ -7,7 +7,7 @@ import PlayScreen from './play/PlayScreen';
 import SetDifficultScreen from './setDifficult/SetDifficultScreen';
 
 const GameScreen = () => {
-	const { state } = useContext(AppContext);
+	const { state } = useContext(GameContext);
 
 	return (
 		<main className="main">

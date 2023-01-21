@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { GameContext } from '../../context/GameContext';
 import { GameStatus } from '../../types/gameStatus';
 import RestartButton from './RestarsButton';
 import { getClockTime, getRealTime } from '../../helpers/getGameTime';
@@ -26,7 +26,7 @@ const endGameTitle: GameStatusDecodeType = {
 };
 
 const Modal = ({ gameStatus }: ModalPropsType) => {
-	const { state } = useContext(AppContext);
+	const { state } = useContext(GameContext);
 
 	const { min, sec } = getClockTime(getRealTime(state.gameStartTime));
 

@@ -24,7 +24,7 @@ export const Reducer: ReducerType = (state, action): GameStateType => {
 			};
 
 		case GameAction.RestartGame:
-			return initGameState();
+			return initGameState;
 
 		case GameAction.ShowAlert:
 			return {

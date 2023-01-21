@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { GameContext } from '../../context/GameContext';
 import { getClockTime, getRealTime } from '../../helpers/getGameTime';
 import { GameStatus } from '../../types/gameStatus';
 
 const Timer = () => {
 	const [time, setTime] = useState<number>(0);
-	const { state } = useContext(AppContext);
+	const { state } = useContext(GameContext);
 
 	useEffect(() => {
 		const interval = setInterval(() => {

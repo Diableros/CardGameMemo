@@ -1,5 +1,5 @@
 import { ReactNode, useReducer } from 'react';
-import { AppContext } from './AppContext';
+import { GameContext } from './GameContext';
 import initGameState from './initGameState';
 import { Reducer } from '../reducer/Reducer';
 import { ReducerType } from '../types/reducer';
@@ -9,12 +9,12 @@ type PropsType = {
 };
 
 const Providers = ({ children }: PropsType) => {
-	const [state, dispatch] = useReducer<ReducerType>(Reducer, initGameState());
+	const [state, dispatch] = useReducer<ReducerType>(Reducer, initGameState);
 
 	return (
-		<AppContext.Provider value={{ state, dispatch }}>
+		<GameContext.Provider value={{ state, dispatch }}>
 			{children}
-		</AppContext.Provider>
+		</GameContext.Provider>
 	);
 };
 

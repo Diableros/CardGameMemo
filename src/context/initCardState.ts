@@ -1,4 +1,4 @@
-export const initCardState = () => ({
+export const initCardState = {
 	cardPrev: undefined,
 	cardsOpen: 0,
-});
+};

@@ -9,6 +9,6 @@ export type CardContextType = {
 };
 
 export const CardContext = createContext<CardContextType>({
-	cardState: initCardState(),
+	cardState: initCardState,
 	cardDispatch: () => {},
 });

@@ -1,5 +1,5 @@
 import { ReactNode, useContext, useEffect } from 'react';
-import { AppContext } from 'src/context/AppContext';
+import { GameContext } from 'src/context/GameContext';
 import { GameAction } from 'src/types/gameAction';
 
 type PorpsType = {
@@ -7,7 +7,7 @@ type PorpsType = {
 };
 
 const Alert = ({ children }: PorpsType) => {
-	const { state, dispatch } = useContext(AppContext);
+	const { state, dispatch } = useContext(GameContext);
 
 	useEffect(() => {
 		const timeOut = setTimeout(() => {

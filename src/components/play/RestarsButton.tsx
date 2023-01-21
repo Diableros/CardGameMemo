@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { GameContext } from '../../context/GameContext';
 import { GameAction } from '../../types/gameAction';
 
 type PropsType = {
@@ -7,7 +7,7 @@ type PropsType = {
 };
 
 const RestartButton = ({ title }: PropsType) => {
-	const { dispatch } = useContext(AppContext);
+	const { dispatch } = useContext(GameContext);
 
 	return (
 		<button

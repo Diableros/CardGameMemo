@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { GameContext } from '../../context/GameContext';
 import { CardContext } from '../../context/CardContext';
 import { getShowCardTimers } from '../../helpers/getShowCardTimers';
 import { GameAction } from '../../types/gameAction';
@@ -16,7 +16,7 @@ type PropsType = {
 
 const PlayCard = ({ card, index }: PropsType) => {
 	const [shirt, setShirt] = useState<boolean>(true);
-	const { state, dispatch } = useContext(AppContext);
+	const { state, dispatch } = useContext(GameContext);
 	const { cardState, cardDispatch } = useContext(CardContext);
 
 	const { openCard, closeCard, DELAY_BEFORE_MODAL } = getShowCardTimers(

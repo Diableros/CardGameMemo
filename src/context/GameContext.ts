@@ -8,7 +8,7 @@ export type AppContextType = {
 	dispatch: React.Dispatch<GameActionType>;
 };
 
-export const AppContext = createContext<AppContextType>({
-	state: initGameState(),
+export const GameContext = createContext<AppContextType>({
+	state: initGameState,
 	dispatch: () => {},
 });

@@ -1,5 +1,5 @@
 import { useContext, useReducer, memo } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { GameContext } from '../../context/GameContext';
 import PlayCard from './PlayCard';
 import { CardReducerType } from '../../types/cardReducer';
 import { CardReducer } from '../../reducer/CardReducer';
@@ -10,9 +10,9 @@ import cn from 'classnames';
 const PlayCardGroup = () => {
 	const [cardState, cardDispatch] = useReducer<CardReducerType>(
 		CardReducer,
-		initCardState()
+		initCardState
 	);
-	const { state } = useContext(AppContext);
+	const { state } = useContext(GameContext);
 	return (
 		<div
 			className={cn('game-screen__playfield', 'playfield', {
