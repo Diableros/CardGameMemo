@@ -17,4 +17,10 @@ export enum Suit {
 	Diamonds = 'D',
 }
 
-export type CardItemType = { R: Rank; S: Suit };
+export type CardIdentType = { R: Rank; S: Suit };
+
+export type CardItemType = {
+	id: number;
+	face: CardIdentType;
+	isOpen: boolean;
+};

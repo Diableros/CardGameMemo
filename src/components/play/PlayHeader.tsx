@@ -1,4 +1,4 @@
-import RestartButton from './RestarsButton';
+import RestartButton from './RestartButton';
 import Timer from './Timer';
 
 const PlayHeader = () => {

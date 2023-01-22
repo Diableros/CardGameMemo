@@ -1,7 +1,6 @@
-import { CardItemType } from './cardItem';
+import { CardIdentType, CardItemType } from './cardItem';
 import { DifficultType } from './difficult';
 import { GameStatus } from './gameStatus';
-import { GameTimeType } from './gameTime';
 
 export enum GameAction {
 	InitGame = 'InitGame',
@@ -10,29 +9,26 @@ export enum GameAction {
 	RestartGame = 'RestartGame',
 	ShowAlert = 'ShowAlert',
 	HideAlert = 'HideAlert',
+	HandleClickedCard = 'HandleClickedCard',
+	OpenCard = 'OpenCard',
+	makeMove = 'makeMove',
 }
 
-type InitGamePayloadType = {
-	difficult: DifficultType;
-	gameStatus: GameStatus.preGame;
+type MakeMovePayloadType = {
+	prevCard: CardIdentType | undefined;
 	playerHandCards: CardItemType[];
 };
 
-type StartGamePayloadType = {
-	gameStatus: GameStatus.game;
-	gameStartTime: GameTimeType;
-};
-
 export type GameActionType =
-	| {
-			type: GameAction.InitGame;
-			payload: InitGamePayloadType;
-	  }
-	| {
-			type: GameAction.StartGame;
-			payload: StartGamePayloadType;
-	  }
+	| { type: GameAction.InitGame; payload: DifficultType }
+	| { type: GameAction.StartGame; payload: CardItemType[] }
 	| { type: GameAction.SetGameStatus; payload: GameStatus }
 	| { type: GameAction.RestartGame }
 	| { type: GameAction.ShowAlert }
-	| { type: GameAction.HideAlert };
+	| { type: GameAction.HideAlert }
+	| {
+			type: GameAction.HandleClickedCard;
+			payload: number;
+	  }
+	| { type: GameAction.OpenCard; payload: CardItemType[] }
+	| { type: GameAction.makeMove; payload: MakeMovePayloadType };

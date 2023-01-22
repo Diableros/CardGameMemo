@@ -1,11 +1,7 @@
 import Alert from '../play/Alert';
 import StartGameBox from './StartGameBox';
 
-type PorpsType = {
-	alert: boolean;
-};
-
-const SetDifficultScreen = ({ alert }: PorpsType) => {
+const SetDifficultScreen = ({ alert }: { alert: boolean }) => {
 	return (
 		<div className="start-screen">
 			<h1 className="start-screen__header">Выбери сложность</h1>

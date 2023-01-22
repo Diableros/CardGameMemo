@@ -4,8 +4,10 @@ import React, {
 	useContext,
 	useReducer,
 	useMemo,
+	useEffect,
 } from 'react';
 import initGameState from './initGameState';
+import { GameAction } from '../types/gameAction';
 import { GameActionType } from '../types/gameAction';
 import { gameReducer } from 'src/reducer/gameReducer';
 import { GameReducerType } from 'src/types/gameReducer';
@@ -13,12 +15,16 @@ import { GameStatus } from 'src/types/gameStatus';
 import { DifficultType } from 'src/types/difficult';
 import { GameTimeType } from 'src/types/gameTime';
 import { CardItemType } from 'src/types/cardItem';
+import { CardIdentType } from 'src/types/cardItem';
+import { SHOW_CARD_TIME } from 'src/helpers/getShowCardTimers';
 
 export type GameContextType = {
 	gameStatus: GameStatus;
 	difficult: DifficultType;
 	gameStartTime: GameTimeType;
 	playerHandCards: CardItemType[];
+	prevCard: CardIdentType | undefined;
+	clickedCard: number | undefined;
 	showAlert: boolean;
 	dispatch: React.Dispatch<GameActionType>;
 };
@@ -43,8 +49,15 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 		initGameState
 	);
 
-	const { gameStatus, difficult, gameStartTime, playerHandCards, showAlert } =
-		state;
+	const {
+		gameStatus,
+		difficult,
+		gameStartTime,
+		playerHandCards,
+		prevCard,
+		clickedCard,
+		showAlert,
+	} = state;
 
 	const memoState = useMemo(() => {
 		return {
@@ -52,10 +65,69 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 			difficult,
 			gameStartTime,
 			playerHandCards,
+			prevCard,
+			clickedCard,
 			showAlert,
 			dispatch: dispatch,
 		};
 	}, [state]);
+
+	useEffect(() => {
+		if (gameStatus === GameStatus.preGame) {
+			const preGameTimeout = setTimeout(() => {
+				const closedPlayerCards = playerHandCards.map((card) => ({
+					...card,
+					isOpen: false,
+				}));
+
+				dispatch({ type: GameAction.StartGame, payload: closedPlayerCards });
+			}, SHOW_CARD_TIME);
+			return () => {
+				clearTimeout(preGameTimeout);
+			};
+		}
+	}, [gameStatus]);
+
+	useEffect(() => {
+		if (clickedCard !== undefined) {
+			const newPlayerHandCards = [...playerHandCards];
+			newPlayerHandCards[clickedCard].isOpen = true;
+
+			if (prevCard === undefined) {
+				dispatch({
+					type: GameAction.makeMove,
+					payload: {
+						prevCard: playerHandCards[clickedCard].face,
+						playerHandCards: newPlayerHandCards,
+					},
+				});
+			} else {
+				if (playerHandCards[clickedCard].face === prevCard) {
+					dispatch({
+						type: GameAction.makeMove,
+						payload: {
+							prevCard: undefined,
+							playerHandCards: newPlayerHandCards,
+						},
+					});
+
+					if (
+						playerHandCards.filter((card) => card.isOpen).length ===
+						playerHandCards.length
+					)
+						dispatch({
+							type: GameAction.SetGameStatus,
+							payload: GameStatus.win,
+						});
+				} else {
+					dispatch({
+						type: GameAction.SetGameStatus,
+						payload: GameStatus.lose,
+					});
+				}
+			}
+		}
+	}, [clickedCard]);
 
 	return (
 		<GameContext.Provider value={memoState}>{children}</GameContext.Provider>

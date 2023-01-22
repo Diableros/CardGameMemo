@@ -1,11 +1,7 @@
 import { useGameContext } from '../../context/GameContext';
 import { GameAction } from '../../types/gameAction';
 
-type PropsType = {
-	title: string;
-};
-
-const RestartButton = ({ title }: PropsType) => {
+const RestartButton = ({ title }: { title: string }) => {
 	const { dispatch } = useGameContext();
 
 	return (

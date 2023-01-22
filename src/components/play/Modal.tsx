@@ -1,6 +1,6 @@
 import { useGameContext } from '../../context/GameContext';
 import { GameStatus } from '../../types/gameStatus';
-import RestartButton from './RestarsButton';
+import RestartButton from './RestartButton';
 import { getClockTime, getRealTime } from '../../helpers/getGameTime';
 import winImg from '../../img/win.png';
 import loseImg from '../../img/lose.png';

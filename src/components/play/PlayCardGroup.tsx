@@ -10,8 +10,8 @@ const PlayCardGroup = () => {
 				[`card-columns-difficulty_${difficult}`]: true,
 			})}
 		>
-			{playerHandCards.map((card, index) => (
-				<PlayCard card={card} index={index} key={index} />
+			{playerHandCards.map((card) => (
+				<PlayCard card={card} key={card.id} />
 			))}
 		</div>
 	);
