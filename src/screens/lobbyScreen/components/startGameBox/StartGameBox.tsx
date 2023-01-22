@@ -1,8 +1,9 @@
 import { useState, memo } from 'react';
-import DifficultButton from './DifficultButton';
-import { DifficultType } from '../../types/difficult';
-import { useGameContext } from '../../context/GameContext';
-import { GameAction } from '../../types/gameAction';
+import DifficultButton from '../../components/difficultButton/DifficultButton';
+import { DifficultType } from '../../../../types/difficult';
+import { useGameContext } from '../../../../context/GameContext';
+import { GameAction } from '../../../../types/gameAction';
+import './startGameBox.scss';
 
 const difficultButtonsArr: DifficultType[] = [1, 2, 3];
 

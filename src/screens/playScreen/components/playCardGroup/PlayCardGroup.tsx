@@ -1,6 +1,7 @@
-import { useGameContext } from '../../context/GameContext';
-import PlayCard from './PlayCard';
+import { useGameContext } from '../../../../context/GameContext';
+import PlayCard from '../playCard/PlayCard';
 import cn from 'classnames';
+import './playCardGroup.scss';
 
 const PlayCardGroup = () => {
 	const { difficult, playerHandCards } = useGameContext();

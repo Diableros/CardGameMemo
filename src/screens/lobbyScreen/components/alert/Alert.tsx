@@ -1,6 +1,7 @@
 import { ReactNode, useEffect } from 'react';
 import { useGameContext } from 'src/context/GameContext';
 import { GameAction } from 'src/types/gameAction';
+import './alert.scss';
 
 const Alert = ({ children }: { children: ReactNode }) => {
 	const { showAlert, dispatch } = useGameContext();

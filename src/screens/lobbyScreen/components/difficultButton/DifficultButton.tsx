@@ -1,4 +1,5 @@
-import { DifficultType } from '../../types/difficult';
+import { DifficultType } from '../../../../types/difficult';
+import './difficultButton.scss';
 
 type PropsType = {
 	selected: Boolean;

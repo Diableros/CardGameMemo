@@ -1,3 +1,5 @@
+import './blocker.scss';
+
 const Blocker = () => {
 	return (
 		<div className="blocker">
