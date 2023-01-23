@@ -1,4 +1,4 @@
-import { CardItemType } from './cardItem';
+import { CardFaceType } from './cardItem';
 import { CardIdentType } from './cardItem';
 import { DifficultType } from './difficult';
 import { GameStatus } from './gameStatus';
@@ -8,7 +8,7 @@ export type GameStateType = {
 	gameStatus: GameStatus;
 	difficult: DifficultType;
 	gameStartTime: GameTimeType;
-	playerHandCards: CardItemType[];
+	playerHandCards: CardFaceType[];
 	prevCard: CardIdentType | undefined;
 	clickedCard: number | undefined;
 	showAlert: boolean;

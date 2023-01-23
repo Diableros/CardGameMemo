@@ -1,6 +1,5 @@
 import { useGameContext } from './context/GameContext';
 import { GameStatus } from './types/gameStatus';
-
 import PlayScreen from './screens/playScreen/PlayScreen';
 import LobbyScreen from './screens/lobbyScreen/LobbyScreen';
 import './style/app.scss';

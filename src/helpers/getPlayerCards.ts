@@ -1,11 +1,11 @@
-import { CardItemType, CardIdentType, Rank, Suit } from '../types/cardItem';
+import { CardFaceType, CardIdentType, Rank, Suit } from '../types/cardItem';
 
 const ranks: Rank[] = [...Object.values(Rank)];
 const suits: Suit[] = [...Object.values(Suit)];
 
 const difficultMultiplier: number = 3;
 
-export const getPlayerCards = (difficult: number): CardItemType[] => {
+export const getPlayerCards = (difficult: number): CardFaceType[] => {
 	if (!difficult) return [];
 
 	const pairsCardsQuantity: number = difficult * difficultMultiplier;

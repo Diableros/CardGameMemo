@@ -14,7 +14,7 @@ import { GameReducerType } from 'src/types/gameReducer';
 import { GameStatus } from 'src/types/gameStatus';
 import { DifficultType } from 'src/types/difficult';
 import { GameTimeType } from 'src/types/gameTime';
-import { CardItemType } from 'src/types/cardItem';
+import { CardFaceType } from 'src/types/cardItem';
 import { CardIdentType } from 'src/types/cardItem';
 import { SHOW_CARD_TIME } from 'src/helpers/getShowCardTimers';
 
@@ -22,7 +22,7 @@ export type GameContextType = {
 	gameStatus: GameStatus;
 	difficult: DifficultType;
 	gameStartTime: GameTimeType;
-	playerHandCards: CardItemType[];
+	playerHandCards: CardFaceType[];
 	prevCard: CardIdentType | undefined;
 	clickedCard: number | undefined;
 	showAlert: boolean;
