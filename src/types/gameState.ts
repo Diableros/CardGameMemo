@@ -11,5 +11,4 @@ export type GameStateType = {
 	playerHandCards: CardFaceType[];
 	prevCard: CardIdentType | undefined;
 	clickedCard: number | undefined;
-	showAlert: boolean;
 };

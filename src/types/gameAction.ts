@@ -24,8 +24,6 @@ export type GameActionType =
 	| { type: GameAction.StartGame; payload: CardFaceType[] }
 	| { type: GameAction.SetGameStatus; payload: GameStatus }
 	| { type: GameAction.RestartGame }
-	| { type: GameAction.ShowAlert }
-	| { type: GameAction.HideAlert }
 	| {
 			type: GameAction.HandleClickedCard;
 			payload: number;

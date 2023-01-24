@@ -8,7 +8,6 @@ const initGameState: GameStateType = {
 	playerHandCards: [],
 	prevCard: undefined,
 	clickedCard: undefined,
-	showAlert: false,
 };
 
 export default initGameState;

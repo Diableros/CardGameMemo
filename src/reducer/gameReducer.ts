@@ -32,18 +32,6 @@ export const gameReducer: GameReducerType = (state, action): GameStateType => {
 		case GameAction.RestartGame:
 			return initGameState;
 
-		case GameAction.ShowAlert:
-			return {
-				...state,
-				showAlert: true,
-			};
-
-		case GameAction.HideAlert:
-			return {
-				...state,
-				showAlert: false,
-			};
-
 		case GameAction.HandleClickedCard:
 			return {
 				...state,

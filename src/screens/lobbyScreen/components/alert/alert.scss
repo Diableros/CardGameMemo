@@ -5,9 +5,10 @@
 	padding: 30px;
 	border-radius: 12px;
 	background-color: #f44;
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
+	opacity: 0;
 
 	&__message {
 		color: #fff;

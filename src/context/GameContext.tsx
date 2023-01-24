@@ -25,7 +25,6 @@ export type GameContextType = {
 	playerHandCards: CardFaceType[];
 	prevCard: CardIdentType | undefined;
 	clickedCard: number | undefined;
-	showAlert: boolean;
 	dispatch: React.Dispatch<GameActionType>;
 };
 
@@ -56,7 +55,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 		playerHandCards,
 		prevCard,
 		clickedCard,
-		showAlert,
 	} = state;
 
 	const memoState = useMemo(() => {
@@ -67,7 +65,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 			playerHandCards,
 			prevCard,
 			clickedCard,
-			showAlert,
 			dispatch: dispatch,
 		};
 	}, [state]);

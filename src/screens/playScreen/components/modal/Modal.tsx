@@ -1,9 +1,11 @@
+import { useRef, useLayoutEffect } from 'react';
 import { useGameContext } from '../../../../context/GameContext';
 import { GameStatus } from '../../../../types/gameStatus';
 import RestartButton from '../restartButton/RestartButton';
 import { getClockTime, getRealTime } from '../../../../helpers/getGameTime';
 import winImg from '../../../../img/win.png';
 import loseImg from '../../../../img/lose.png';
+import { gsap } from 'gsap';
 import './modal.scss';
 
 type ModalPropsType = {
@@ -26,12 +28,30 @@ const endGameTitle: GameStatusDecodeType = {
 };
 
 const Modal = ({ gameStatus }: ModalPropsType) => {
+	const divRef = useRef<HTMLDivElement>(null);
+
+	useLayoutEffect(() => {
+		const anim = gsap.fromTo(
+			divRef.current,
+			{ opacity: 0 },
+			{
+				delay: 1,
+				opacity: 1,
+				duration: 0.2,
+			}
+		);
+
+		return () => {
+			anim.kill();
+		};
+	}, [divRef]);
+
 	const { gameStartTime } = useGameContext();
 
 	const { min, sec } = getClockTime(getRealTime(gameStartTime));
 
 	return (
-		<div className="modal">
+		<div ref={divRef} className="modal">
 			<div className="modal__content-box">
 				<img className="modal__img" src={backgroundImage[gameStatus]} />
 				<h1 className="modal__title">{endGameTitle[gameStatus]}</h1>

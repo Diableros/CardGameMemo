@@ -9,14 +9,14 @@ const difficultButtonsArr: DifficultType[] = [1, 2, 3];
 
 const MemoizedDifficultButton = memo(DifficultButton);
 
-const StartGameBox = () => {
+const StartGameBox = ({ showAlert }: { showAlert: () => void }) => {
 	const { dispatch } = useGameContext();
 
 	const [diffButton, setDiffButton] = useState<DifficultType>(0);
 
 	const handleClickStartButton = (): void => {
 		if (diffButton === 0) {
-			dispatch({ type: GameAction.ShowAlert });
+			showAlert();
 			return;
 		}
 
