@@ -1,7 +1,7 @@
 import { DifficultType } from '../types/difficult';
 
-const DELAY_SHOW_CARD_TIME: number = 500;
-const TIME_SHIFT_MULTIPLIER: number = 80;
+export const DELAY_SHOW_CARD_TIME: number = 500;
+export const TIME_SHIFT_MULTIPLIER: number = 80;
 export const SHOW_CARD_TIME: number = 5000;
 export const DELAY_BEFORE_MODAL: number = 1000;
 

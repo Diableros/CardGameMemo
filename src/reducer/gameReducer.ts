@@ -15,6 +15,12 @@ export const gameReducer: GameReducerType = (state, action): GameStateType => {
 				playerHandCards: getPlayerCards(action.payload),
 			};
 
+		case GameAction.OpenAllCards:
+			return {
+				...state,
+				playerHandCards: action.payload,
+			};
+
 		case GameAction.StartGame:
 			return {
 				...state,

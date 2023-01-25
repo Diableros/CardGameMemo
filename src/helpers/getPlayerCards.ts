@@ -1,16 +1,16 @@
-import { CardFaceType, CardIdentType, Rank, Suit } from '../types/cardItem';
+import { CardItemType, CardFaceType, Rank, Suit } from '../types/cardItem';
 
 const ranks: Rank[] = [...Object.values(Rank)];
 const suits: Suit[] = [...Object.values(Suit)];
 
 const difficultMultiplier: number = 3;
 
-export const getPlayerCards = (difficult: number): CardFaceType[] => {
+export const getPlayerCards = (difficult: number): CardItemType[] => {
 	if (!difficult) return [];
 
 	const pairsCardsQuantity: number = difficult * difficultMultiplier;
 
-	const cardDeck: CardIdentType[] = [];
+	const cardDeck: CardFaceType[] = [];
 
 	ranks.forEach((rank) => {
 		suits.forEach((suit) => {
@@ -18,10 +18,10 @@ export const getPlayerCards = (difficult: number): CardFaceType[] => {
 		});
 	});
 
-	const playerCardPairs: CardIdentType[] = [];
+	const playerCardPairs: CardFaceType[] = [];
 
 	while (playerCardPairs.length < pairsCardsQuantity) {
-		const receivedCard: CardIdentType[] = cardDeck.splice(
+		const receivedCard: CardFaceType[] = cardDeck.splice(
 			Math.floor(Math.random() * cardDeck.length),
 			1
 		);
@@ -29,14 +29,14 @@ export const getPlayerCards = (difficult: number): CardFaceType[] => {
 		playerCardPairs.push(...receivedCard);
 	}
 
-	const playerCards: CardIdentType[] = [...playerCardPairs, ...playerCardPairs];
+	const playerCards: CardFaceType[] = [...playerCardPairs, ...playerCardPairs];
 
-	const shuffledPlayerCardsIdents: CardIdentType[] = playerCards.sort(
+	const shuffledPlayerCardsIdents: CardFaceType[] = playerCards.sort(
 		() => Math.random() - 0.5
 	);
 
 	const shuffledPlayerCardsItems = shuffledPlayerCardsIdents.map(
-		(cardIdent, index) => ({ id: index, face: cardIdent, isOpen: true })
+		(cardIdent, index) => ({ id: index, face: cardIdent, isOpen: false })
 	);
 
 	return shuffledPlayerCardsItems;

@@ -17,10 +17,10 @@ export enum Suit {
 	Diamonds = 'D',
 }
 
-export type CardIdentType = { R: Rank; S: Suit };
+export type CardFaceType = { R: Rank; S: Suit };
 
-export type CardFaceType = {
+export type CardItemType = {
 	id: number;
-	face: CardIdentType;
+	face: CardFaceType;
 	isOpen: boolean;
 };

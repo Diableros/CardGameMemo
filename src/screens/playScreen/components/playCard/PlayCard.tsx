@@ -1,12 +1,12 @@
 import { useGameContext } from '../../../../context/GameContext';
 import { GameAction } from '../../../../types/gameAction';
-import { CardFaceType } from '../../../../types/cardItem';
+import { CardItemType } from '../../../../types/cardItem';
 import { images } from '../../../../img/cardsImages';
 import cn from 'classnames';
 import './playCard.scss';
 
 type PropsType = {
-	card: CardFaceType;
+	card: CardItemType;
 };
 
 const PlayCard = ({ card }: PropsType) => {

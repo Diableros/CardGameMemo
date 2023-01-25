@@ -14,16 +14,17 @@ import { GameReducerType } from 'src/types/gameReducer';
 import { GameStatus } from 'src/types/gameStatus';
 import { DifficultType } from 'src/types/difficult';
 import { GameTimeType } from 'src/types/gameTime';
+import { CardItemType } from 'src/types/cardItem';
 import { CardFaceType } from 'src/types/cardItem';
-import { CardIdentType } from 'src/types/cardItem';
-import { SHOW_CARD_TIME } from 'src/helpers/getShowCardTimers';
+import { SHOW_CARD_TIME } from '../helpers/getShowCardTimers';
+import { TIME_SHIFT_MULTIPLIER } from '../helpers/getShowCardTimers';
 
 export type GameContextType = {
 	gameStatus: GameStatus;
 	difficult: DifficultType;
 	gameStartTime: GameTimeType;
-	playerHandCards: CardFaceType[];
-	prevCard: CardIdentType | undefined;
+	playerHandCards: CardItemType[];
+	prevCard: CardFaceType | undefined;
 	clickedCard: number | undefined;
 	dispatch: React.Dispatch<GameActionType>;
 };
@@ -71,6 +72,15 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
 	useEffect(() => {
 		if (gameStatus === GameStatus.preGame) {
+			const preGameShowCardDelay = setTimeout(() => {
+				const openedPlayerCards = playerHandCards.map((card) => ({
+					...card,
+					isOpen: true,
+				}));
+
+				dispatch({ type: GameAction.OpenAllCards, payload: openedPlayerCards });
+			}, TIME_SHIFT_MULTIPLIER);
+
 			const preGameTimeout = setTimeout(() => {
 				const closedPlayerCards = playerHandCards.map((card) => ({
 					...card,
@@ -80,6 +90,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 				dispatch({ type: GameAction.StartGame, payload: closedPlayerCards });
 			}, SHOW_CARD_TIME);
 			return () => {
+				clearTimeout(preGameShowCardDelay);
 				clearTimeout(preGameTimeout);
 			};
 		}
