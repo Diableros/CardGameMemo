@@ -1,0 +1,39 @@
+.not-found {
+	width: 480px;
+	height: 460px;
+	background: #c2f5ff;
+	color: #004980;
+	border-radius: 12px;
+	padding: 32px 48px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+
+	&__header {
+		font-size: 128px;
+	}
+
+	&__title {
+		font-size: 32px;
+		text-align: center;
+	}
+
+	&__to-start-btn {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 246px;
+		height: 50px;
+		font-size: 24px;
+		background: #7ac100;
+		border-radius: 12px;
+		padding-bottom: 5px;
+
+		&:visited,
+		&:focus,
+		&:hover {
+			color: white;
+		}
+	}
+}

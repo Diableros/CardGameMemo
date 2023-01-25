@@ -1,0 +1,34 @@
+@import './reset';
+
+@font-face {
+	font-family: SkyEng;
+	src: url('../../public/stratosskyengweb-regular.woff2') format('woff2'); /* все современные браузеры */
+}
+
+body {
+	font-family: SkyEng, Arial, Helvetica, sans-serif;
+	display: flex;
+	width: 100vw;
+	justify-content: center;
+	align-items: flex-start;
+	background: #004980;
+	color: #0080c1;
+}
+
+.main {
+	width: 900px;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px 0 50px;
+}
+
+.hover-scale {
+	transition: 0.15s transform;
+	cursor: pointer;
+
+	&:hover {
+		transform: scale(1.04);
+	}
+}

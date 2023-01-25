@@ -1,27 +1,27 @@
 import { DifficultType } from '../types/difficult';
 
-const delayShowCardTime: number = 500;
-const timeShiftMultiplier: number = 80;
-const showCardTime: number = 5000;
-const rotateTime: number = 700; // equal transition in style.scss .card
+export const DELAY_SHOW_CARD_TIME: number = 500;
+export const TIME_SHIFT_MULTIPLIER: number = 80;
+export const SHOW_CARD_TIME: number = 5000;
+export const DELAY_BEFORE_MODAL: number = 1000;
 
 type getShowCardTimersType = {
-	rise: number;
-	dawn: number;
-	rotateTime: number;
+	openCard: number;
+	closeCard: number;
+	DELAY_BEFORE_MODAL: number;
 };
 
 export const getShowCardTimers = (
 	cardIndex: number,
 	difficult: DifficultType
 ): getShowCardTimersType => {
-	const timeShift = cardIndex * timeShiftMultiplier;
-	const rise = delayShowCardTime + timeShift;
-	const dawn =
-		delayShowCardTime +
-		showCardTime +
-		delayShowCardTime * difficult -
+	const timeShift = cardIndex * TIME_SHIFT_MULTIPLIER;
+	const openCard = DELAY_SHOW_CARD_TIME + timeShift;
+	const closeCard =
+		DELAY_SHOW_CARD_TIME +
+		SHOW_CARD_TIME +
+		DELAY_SHOW_CARD_TIME * difficult -
 		timeShift;
 
-	return { rise, dawn, rotateTime };
+	return { openCard, closeCard, DELAY_BEFORE_MODAL };
 };
