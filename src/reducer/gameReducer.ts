@@ -57,6 +57,6 @@ export const gameReducer: GameReducerType = (state, action): GameStateType => {
 			};
 
 		default:
-			return { ...state };
+			return state;
 	}
 };

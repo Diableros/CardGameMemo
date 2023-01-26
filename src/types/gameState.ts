@@ -9,6 +9,6 @@ export type GameStateType = {
 	difficult: DifficultType;
 	gameStartTime: GameTimeType;
 	playerHandCards: CardItemType[];
-	prevCard: CardFaceType | undefined;
-	clickedCard: number | undefined;
+	prevCard: CardFaceType | null;
+	clickedCard: number | null;
 };

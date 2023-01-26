@@ -2,19 +2,13 @@ import './notFoundScreen.scss';
 import { Link } from 'react-router-dom';
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
+import fadeInScreen from 'helpers/fadeInScreenAnimaiton';
 
 const NotFoundScreen = () => {
 	const divRef = useRef<HTMLDivElement>(null);
 
 	useLayoutEffect(() => {
-		const anim = gsap.fromTo(
-			divRef.current,
-			{ opacity: 0 },
-			{
-				opacity: 1,
-				duration: 2,
-			}
-		);
+		const anim = fadeInScreen(divRef.current);
 
 		return () => {
 			anim.kill();

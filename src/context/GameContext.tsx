@@ -12,20 +12,11 @@ import { GameActionType } from 'types/gameAction';
 import { gameReducer } from 'reducer/gameReducer';
 import { GameReducerType } from 'types/gameReducer';
 import { GameStatus } from 'types/gameStatus';
-import { DifficultType } from 'types/difficult';
-import { GameTimeType } from 'types/gameTime';
-import { CardItemType } from 'types/cardItem';
-import { CardFaceType } from 'types/cardItem';
 import { SHOW_CARD_TIME } from 'helpers/getShowCardTimers';
 import { TIME_SHIFT_MULTIPLIER } from 'helpers/getShowCardTimers';
+import { GameStateType } from 'types/gameState';
 
-export type GameContextType = {
-	gameStatus: GameStatus;
-	difficult: DifficultType;
-	gameStartTime: GameTimeType;
-	playerHandCards: CardItemType[];
-	prevCard: CardFaceType | undefined;
-	clickedCard: number | undefined;
+export type GameContextType = GameStateType & {
 	dispatch: React.Dispatch<GameActionType>;
 };
 
@@ -97,11 +88,11 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 	}, [gameStatus]);
 
 	useEffect(() => {
-		if (clickedCard !== undefined) {
+		if (clickedCard !== null) {
 			const newPlayerHandCards = [...playerHandCards];
 			newPlayerHandCards[clickedCard].isOpen = true;
 
-			if (prevCard === undefined) {
+			if (prevCard === null) {
 				dispatch({
 					type: GameAction.makeMove,
 					payload: {
@@ -114,15 +105,12 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 					dispatch({
 						type: GameAction.makeMove,
 						payload: {
-							prevCard: undefined,
+							prevCard: null,
 							playerHandCards: newPlayerHandCards,
 						},
 					});
 
-					if (
-						playerHandCards.filter((card) => card.isOpen).length ===
-						playerHandCards.length
-					)
+					if (playerHandCards.every((card) => card.isOpen))
 						dispatch({
 							type: GameAction.SetGameStatus,
 							payload: GameStatus.win,
