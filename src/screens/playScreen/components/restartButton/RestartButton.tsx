@@ -1,9 +1,12 @@
 import { useGameContext } from 'context/GameContext';
+import { useNavigate } from 'react-router-dom';
 import { GameAction } from 'types/gameAction';
 import './restartButton.scss';
 
 const RestartButton = ({ title }: { title: string }) => {
 	const { dispatch } = useGameContext();
+
+	const navigate = useNavigate();
 
 	return (
 		<button
@@ -12,6 +15,7 @@ const RestartButton = ({ title }: { title: string }) => {
 				dispatch({
 					type: GameAction.RestartGame,
 				});
+				navigate('/lobby');
 			}}
 		>
 			{title}
