@@ -1,10 +1,10 @@
 import { useRef, useLayoutEffect } from 'react';
-import { useGameContext } from '../../../../context/GameContext';
-import { GameStatus } from '../../../../types/gameStatus';
+import { useGameContext } from 'context/GameContext';
+import { GameStatus } from 'types/gameStatus';
 import RestartButton from '../restartButton/RestartButton';
-import { getClockTime, getRealTime } from '../../../../helpers/getGameTime';
-import winImg from '../../../../img/win.png';
-import loseImg from '../../../../img/lose.png';
+import { getClockTime, getRealTime } from 'helpers/getGameTime';
+import winImg from 'img/win.png';
+import loseImg from 'img/lose.png';
 import { gsap } from 'gsap';
 import './modal.scss';
 

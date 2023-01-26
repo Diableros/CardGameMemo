@@ -1,9 +1,9 @@
-import { GameStateType } from '../types/gameState';
-import { GameReducerType } from '../types/gameReducer';
-import { GameAction } from '../types/gameAction';
-import initGameState from 'src/context/initGameState';
-import { GameStatus } from 'src/types/gameStatus';
-import { getPlayerCards } from 'src/helpers/getPlayerCards';
+import { GameStateType } from 'types/gameState';
+import { GameReducerType } from 'types/gameReducer';
+import { GameAction } from 'types/gameAction';
+import initGameState from 'context/initGameState';
+import { GameStatus } from 'types/gameStatus';
+import { getPlayerCards } from 'helpers/getPlayerCards';
 
 export const gameReducer: GameReducerType = (state, action): GameStateType => {
 	switch (action.type) {

@@ -1,4 +1,4 @@
-import { CardItemType, CardFaceType, Rank, Suit } from '../types/cardItem';
+import { CardItemType, CardFaceType, Rank, Suit } from 'types/cardItem';
 
 const ranks: Rank[] = [...Object.values(Rank)];
 const suits: Suit[] = [...Object.values(Suit)];

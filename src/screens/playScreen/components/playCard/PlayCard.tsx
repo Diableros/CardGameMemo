@@ -1,7 +1,7 @@
-import { useGameContext } from '../../../../context/GameContext';
-import { GameAction } from '../../../../types/gameAction';
-import { CardItemType } from '../../../../types/cardItem';
-import { images } from '../../../../img/cardsImages';
+import { useGameContext } from 'context/GameContext';
+import { GameAction } from 'types/gameAction';
+import { CardItemType } from 'types/cardItem';
+import { images } from 'img/cardsImages';
 import cn from 'classnames';
 import './playCard.scss';
 

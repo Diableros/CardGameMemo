@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useGameContext } from './context/GameContext';
-import { GameStatus } from './types/gameStatus';
-import './style/app.scss';
+import { useGameContext } from 'context/GameContext';
+import { GameStatus } from 'types/gameStatus';
+import 'style/app.scss';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 const App = () => {

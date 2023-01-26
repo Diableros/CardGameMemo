@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useGameContext } from '../../../../context/GameContext';
-import { getClockTime, getRealTime } from '../../../../helpers/getGameTime';
-import { GameStatus } from '../../../../types/gameStatus';
+import { useGameContext } from 'context/GameContext';
+import { getClockTime, getRealTime } from 'helpers/getGameTime';
+import { GameStatus } from 'types/gameStatus';
 import './timer.scss';
 
 const Timer = () => {
