@@ -1,7 +1,6 @@
 import './notFoundScreen.scss';
 import { Link } from 'react-router-dom';
 import { useRef, useLayoutEffect } from 'react';
-import { gsap } from 'gsap';
 import fadeInScreen from 'helpers/fadeInScreenAnimaiton';
 
 const NotFoundScreen = () => {
@@ -13,7 +12,7 @@ const NotFoundScreen = () => {
 		return () => {
 			anim.kill();
 		};
-	}, [divRef]);
+	});
 
 	return (
 		<main ref={divRef} className="main">

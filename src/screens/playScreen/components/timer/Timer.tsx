@@ -15,7 +15,7 @@ const Timer = () => {
 		return () => {
 			clearInterval(interval);
 		};
-	}, [gameStatus]);
+	}, [gameStartTime]);
 
 	const { min, sec } = getClockTime(time);
 

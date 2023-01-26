@@ -5,11 +5,7 @@ import { images } from 'img/cardsImages';
 import cn from 'classnames';
 import './playCard.scss';
 
-type PropsType = {
-	card: CardItemType;
-};
-
-const PlayCard = ({ card }: PropsType) => {
+const PlayCard = ({ card }: { card: CardItemType }) => {
 	const { dispatch } = useGameContext();
 
 	const { id, face, isOpen } = card;

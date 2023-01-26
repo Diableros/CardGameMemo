@@ -24,7 +24,6 @@ export const gameReducer: GameReducerType = (state, action): GameStateType => {
 		case GameAction.StartGame:
 			return {
 				...state,
-				gameStatus: GameStatus.game,
 				gameStartTime: Math.floor(Date.now() / 1000),
 				playerHandCards: action.payload,
 			};

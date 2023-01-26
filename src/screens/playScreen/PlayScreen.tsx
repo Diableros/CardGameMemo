@@ -28,7 +28,7 @@ const PlayScreen = () => {
 		return () => {
 			anim.kill();
 		};
-	}, [divRef]);
+	}, []);
 
 	return (
 		<>

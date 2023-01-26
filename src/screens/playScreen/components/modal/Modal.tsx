@@ -44,7 +44,7 @@ const Modal = ({ gameStatus }: ModalPropsType) => {
 		return () => {
 			anim.kill();
 		};
-	}, [divRef]);
+	});
 
 	const { gameStartTime } = useGameContext();
 

@@ -12,7 +12,10 @@ import { GameActionType } from 'types/gameAction';
 import { gameReducer } from 'reducer/gameReducer';
 import { GameReducerType } from 'types/gameReducer';
 import { GameStatus } from 'types/gameStatus';
-import { SHOW_CARD_TIME } from 'helpers/getShowCardTimers';
+import {
+	DELAY_BEFORE_SHOW_CARD,
+	SHOW_CARD_TIME,
+} from 'helpers/getShowCardTimers';
 import { TIME_SHIFT_MULTIPLIER } from 'helpers/getShowCardTimers';
 import { GameStateType } from 'types/gameState';
 
@@ -70,20 +73,20 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 				}));
 
 				dispatch({ type: GameAction.OpenAllCards, payload: openedPlayerCards });
-			}, TIME_SHIFT_MULTIPLIER);
+			}, DELAY_BEFORE_SHOW_CARD);
 
-			const preGameTimeout = setTimeout(() => {
-				const closedPlayerCards = playerHandCards.map((card) => ({
-					...card,
-					isOpen: false,
-				}));
-
-				dispatch({ type: GameAction.StartGame, payload: closedPlayerCards });
-			}, SHOW_CARD_TIME);
 			return () => {
 				clearTimeout(preGameShowCardDelay);
-				clearTimeout(preGameTimeout);
 			};
+		}
+
+		if (gameStatus === GameStatus.game) {
+			const closedPlayerCards = playerHandCards.map((card) => ({
+				...card,
+				isOpen: false,
+			}));
+
+			dispatch({ type: GameAction.StartGame, payload: closedPlayerCards });
 		}
 	}, [gameStatus]);
 
