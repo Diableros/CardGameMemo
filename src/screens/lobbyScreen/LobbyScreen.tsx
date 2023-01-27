@@ -2,8 +2,7 @@ import Alert from '../lobbyScreen/components/alert/Alert';
 import StartGameBox from '../lobbyScreen/components/startGameBox/StartGameBox';
 import './lobbyScreen.scss';
 import { useState, useLayoutEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import fadeInScreen from 'helpers/fadeInScreenAnimaiton';
+import { fadeInScreenTween } from 'helpers/animations';
 
 const LobbyScreen = () => {
 	const [showAlertState, setShowAlertState] = useState<boolean>(false);
@@ -11,7 +10,7 @@ const LobbyScreen = () => {
 	const divRef = useRef<HTMLDivElement>(null);
 
 	useLayoutEffect(() => {
-		const anim = fadeInScreen(divRef.current);
+		const anim = fadeInScreenTween(divRef.current);
 
 		return () => {
 			anim.kill();

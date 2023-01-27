@@ -1,5 +1,5 @@
 import { useRef, useLayoutEffect } from 'react';
-import { gsap } from 'gsap';
+import { fadeInPlayScreenTween } from 'helpers/animations';
 import Timer from './components/timer/Timer';
 import RestartButton from './components/restartButton/RestartButton';
 import PlayCardGroup from './components/playCardGroup/PlayCardGroup';
@@ -15,15 +15,7 @@ const PlayScreen = () => {
 	const divRef = useRef<HTMLDivElement>(null);
 
 	useLayoutEffect(() => {
-		const anim = gsap.fromTo(
-			divRef.current,
-			{ opacity: 0 },
-			{
-				delay: 0.1,
-				opacity: 1,
-				duration: 0.4,
-			}
-		);
+		const anim = fadeInPlayScreenTween(divRef.current);
 
 		return () => {
 			anim.kill();

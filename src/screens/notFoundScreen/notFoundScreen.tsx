@@ -1,13 +1,13 @@
 import './notFoundScreen.scss';
 import { Link } from 'react-router-dom';
 import { useRef, useLayoutEffect } from 'react';
-import fadeInScreen from 'helpers/fadeInScreenAnimaiton';
+import { fadeInScreenTween } from 'helpers/animations';
 
 const NotFoundScreen = () => {
 	const divRef = useRef<HTMLDivElement>(null);
 
 	useLayoutEffect(() => {
-		const anim = fadeInScreen(divRef.current);
+		const anim = fadeInScreenTween(divRef.current);
 
 		return () => {
 			anim.kill();
