@@ -12,11 +12,7 @@ import { GameActionType } from 'types/gameAction';
 import { gameReducer } from 'reducer/gameReducer';
 import { GameReducerType } from 'types/gameReducer';
 import { GameStatus } from 'types/gameStatus';
-import {
-	DELAY_BEFORE_SHOW_CARD,
-	SHOW_CARD_TIME,
-} from 'helpers/getShowCardTimers';
-import { TIME_SHIFT_MULTIPLIER } from 'helpers/getShowCardTimers';
+import { DELAY_BEFORE_SHOW_CARD } from 'helpers/getShowCardTimers';
 import { GameStateType } from 'types/gameState';
 
 export type GameContextType = GameStateType & {

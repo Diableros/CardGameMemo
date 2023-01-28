@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="start-screen"
+>
+  <h1
+    className="start-screen__header"
+  >
+    Выбери сложность
+  </h1>
+  <div
+    className="start-screen__difficult-box"
+  >
+    <div
+      className="start-screen__difficult-button hover-scale"
+      onClick={[Function]}
+    >
+      1
+    </div>
+    <div
+      className="start-screen__difficult-button hover-scale"
+      onClick={[Function]}
+    >
+      2
+    </div>
+    <div
+      className="start-screen__difficult-button hover-scale"
+      onClick={[Function]}
+    >
+      3
+    </div>
+  </div>
+  <button
+    className="start-screen__start-button hover-scale"
+    onClick={[Function]}
+  >
+    Старт
+  </button>
+  <div
+    className="alert"
+  >
+    <h1
+      className="alert__message"
+    >
+      Выберите сложность!
+    </h1>
+  </div>
+</div>
+`;

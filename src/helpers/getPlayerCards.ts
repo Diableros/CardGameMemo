@@ -3,7 +3,7 @@ import { CardItemType, CardFaceType, Rank, Suit } from 'types/cardItem';
 const ranks: Rank[] = [...Object.values(Rank)];
 const suits: Suit[] = [...Object.values(Suit)];
 
-const difficultMultiplier: number = 3;
+export const difficultMultiplier: number = 3;
 
 export const getPlayerCards = (difficult: number): CardItemType[] => {
 	if (!difficult) return [];
@@ -35,9 +35,12 @@ export const getPlayerCards = (difficult: number): CardItemType[] => {
 		() => Math.random() - 0.5
 	);
 
-	const shuffledPlayerCardsItems = shuffledPlayerCardsIdents.map(
-		(cardIdent, index) => ({ id: index, face: cardIdent, isOpen: false })
-	);
+	const shuffledPlayerCardsItems: CardItemType[] =
+		shuffledPlayerCardsIdents.map((cardIdent, index) => ({
+			id: index,
+			face: cardIdent,
+			isOpen: false,
+		}));
 
 	return shuffledPlayerCardsItems;
 };
