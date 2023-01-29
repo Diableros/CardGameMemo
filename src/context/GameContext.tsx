@@ -61,28 +61,38 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 	}, [state]);
 
 	useEffect(() => {
-		if (gameStatus === GameStatus.preGame) {
-			const preGameShowCardDelay = setTimeout(() => {
-				const openedPlayerCards = playerHandCards.map((card) => ({
-					...card,
-					isOpen: true,
-				}));
+		switch (gameStatus) {
+			case GameStatus.preGame: {
+				const preGameShowCardDelay = setTimeout(() => {
+					const openedPlayerCards = playerHandCards.map((card) => ({
+						...card,
+						isOpen: true,
+					}));
 
-				dispatch({ type: GameAction.OpenAllCards, payload: openedPlayerCards });
-			}, DELAY_BEFORE_SHOW_CARD);
+					dispatch({
+						type: GameAction.OpenAllCards,
+						payload: openedPlayerCards,
+					});
+				}, DELAY_BEFORE_SHOW_CARD);
 
-			return () => {
-				clearTimeout(preGameShowCardDelay);
-			};
-		}
+				return () => {
+					clearTimeout(preGameShowCardDelay);
+				};
+			}
 
-		if (gameStatus === GameStatus.game) {
-			const closedPlayerCards = playerHandCards.map((card) => ({
-				...card,
-				isOpen: false,
-			}));
+			case GameStatus.game:
+				{
+					const closedPlayerCards = playerHandCards.map((card) => ({
+						...card,
+						isOpen: false,
+					}));
 
-			dispatch({ type: GameAction.StartGame, payload: closedPlayerCards });
+					dispatch({ type: GameAction.StartGame, payload: closedPlayerCards });
+				}
+				break;
+
+			default:
+				null;
 		}
 	}, [gameStatus]);
 
