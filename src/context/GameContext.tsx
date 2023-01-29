@@ -12,11 +12,7 @@ import { GameActionType } from 'types/gameAction';
 import { gameReducer } from 'reducer/gameReducer';
 import { GameReducerType } from 'types/gameReducer';
 import { GameStatus } from 'types/gameStatus';
-import {
-	DELAY_BEFORE_SHOW_CARD,
-	SHOW_CARD_TIME,
-} from 'helpers/getShowCardTimers';
-import { TIME_SHIFT_MULTIPLIER } from 'helpers/getShowCardTimers';
+import { DELAY_BEFORE_SHOW_CARD } from 'helpers/getShowCardTimers';
 import { GameStateType } from 'types/gameState';
 
 export type GameContextType = GameStateType & {
@@ -65,28 +61,38 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 	}, [state]);
 
 	useEffect(() => {
-		if (gameStatus === GameStatus.preGame) {
-			const preGameShowCardDelay = setTimeout(() => {
-				const openedPlayerCards = playerHandCards.map((card) => ({
-					...card,
-					isOpen: true,
-				}));
+		switch (gameStatus) {
+			case GameStatus.preGame: {
+				const preGameShowCardDelay = setTimeout(() => {
+					const openedPlayerCards = playerHandCards.map((card) => ({
+						...card,
+						isOpen: true,
+					}));
 
-				dispatch({ type: GameAction.OpenAllCards, payload: openedPlayerCards });
-			}, DELAY_BEFORE_SHOW_CARD);
+					dispatch({
+						type: GameAction.OpenAllCards,
+						payload: openedPlayerCards,
+					});
+				}, DELAY_BEFORE_SHOW_CARD);
 
-			return () => {
-				clearTimeout(preGameShowCardDelay);
-			};
-		}
+				return () => {
+					clearTimeout(preGameShowCardDelay);
+				};
+			}
 
-		if (gameStatus === GameStatus.game) {
-			const closedPlayerCards = playerHandCards.map((card) => ({
-				...card,
-				isOpen: false,
-			}));
+			case GameStatus.game:
+				{
+					const closedPlayerCards = playerHandCards.map((card) => ({
+						...card,
+						isOpen: false,
+					}));
 
-			dispatch({ type: GameAction.StartGame, payload: closedPlayerCards });
+					dispatch({ type: GameAction.StartGame, payload: closedPlayerCards });
+				}
+				break;
+
+			default:
+				null;
 		}
 	}, [gameStatus]);
 

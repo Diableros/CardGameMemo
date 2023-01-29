@@ -6,7 +6,7 @@ import { GameAction } from 'types/gameAction';
 import './startGameBox.scss';
 import { useNavigate } from 'react-router-dom';
 
-const difficultButtonsArr: DifficultType[] = [1, 2, 3];
+export const difficultButtonsArr: DifficultType[] = [1, 2, 3];
 
 const MemoizedDifficultButton = memo(DifficultButton);
 
