@@ -4,8 +4,8 @@ import Timer from './components/timer/Timer';
 import RestartButton from './components/restartButton/RestartButton';
 import PlayCardGroup from './components/playCardGroup/PlayCardGroup';
 import './playScreen.scss';
-import { GameStatus } from 'src/types/gameStatus';
-import { useGameContext } from 'src/context/GameContext';
+import { GameStatus } from 'types/gameStatus';
+import { useGameContext } from 'context/GameContext';
 import Blocker from './components/blocker/Blocker';
 import Modal from './components/modal/Modal';
 

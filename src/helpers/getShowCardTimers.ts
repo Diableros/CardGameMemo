@@ -1,4 +1,4 @@
-import { DifficultType } from '../types/difficult';
+import { DifficultType } from 'types/difficult';
 
 export const DELAY_SHOW_CARD_TIME: number = 500;
 export const TIME_SHIFT_MULTIPLIER: number = 80;

@@ -1,9 +1,10 @@
 import { useState, memo } from 'react';
-import DifficultButton from '../../components/difficultButton/DifficultButton';
-import { DifficultType } from '../../../../types/difficult';
-import { useGameContext } from '../../../../context/GameContext';
-import { GameAction } from '../../../../types/gameAction';
+import DifficultButton from 'screens/lobbyScreen/components/difficultButton/DifficultButton';
+import { DifficultType } from 'types/difficult';
+import { useGameContext } from 'context/GameContext';
+import { GameAction } from 'types/gameAction';
 import './startGameBox.scss';
+import { useNavigate } from 'react-router-dom';
 
 const difficultButtonsArr: DifficultType[] = [1, 2, 3];
 
@@ -14,11 +15,15 @@ const StartGameBox = ({ showAlert }: { showAlert: () => void }) => {
 
 	const [diffButton, setDiffButton] = useState<DifficultType>(0);
 
+	const navigate = useNavigate();
+
 	const handleClickStartButton = (): void => {
 		if (diffButton === 0) {
 			showAlert();
 			return;
 		}
+
+		navigate('/play');
 
 		dispatch({
 			type: GameAction.InitGame,

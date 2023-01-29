@@ -1,4 +1,4 @@
-import { useGameContext } from '../../../../context/GameContext';
+import { useGameContext } from 'context/GameContext';
 import PlayCard from '../playCard/PlayCard';
 import cn from 'classnames';
 import './playCardGroup.scss';

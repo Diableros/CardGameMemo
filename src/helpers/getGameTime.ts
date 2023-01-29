@@ -1,4 +1,4 @@
-import { GameTimeType } from '../types/gameTime';
+import { GameTimeType } from 'types/gameTime';
 
 const getPadTime = (time: number): string => {
 	return time.toString().padStart(2, '0');

@@ -7,17 +7,17 @@ import React, {
 	useEffect,
 } from 'react';
 import initGameState from './initGameState';
-import { GameAction } from '../types/gameAction';
-import { GameActionType } from '../types/gameAction';
-import { gameReducer } from 'src/reducer/gameReducer';
-import { GameReducerType } from 'src/types/gameReducer';
-import { GameStatus } from 'src/types/gameStatus';
-import { DifficultType } from 'src/types/difficult';
-import { GameTimeType } from 'src/types/gameTime';
-import { CardItemType } from 'src/types/cardItem';
-import { CardFaceType } from 'src/types/cardItem';
-import { SHOW_CARD_TIME } from '../helpers/getShowCardTimers';
-import { TIME_SHIFT_MULTIPLIER } from '../helpers/getShowCardTimers';
+import { GameAction } from 'types/gameAction';
+import { GameActionType } from 'types/gameAction';
+import { gameReducer } from 'reducer/gameReducer';
+import { GameReducerType } from 'types/gameReducer';
+import { GameStatus } from 'types/gameStatus';
+import { DifficultType } from 'types/difficult';
+import { GameTimeType } from 'types/gameTime';
+import { CardItemType } from 'types/cardItem';
+import { CardFaceType } from 'types/cardItem';
+import { SHOW_CARD_TIME } from 'helpers/getShowCardTimers';
+import { TIME_SHIFT_MULTIPLIER } from 'helpers/getShowCardTimers';
 
 export type GameContextType = {
 	gameStatus: GameStatus;

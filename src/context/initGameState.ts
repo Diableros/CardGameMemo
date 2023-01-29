@@ -1,5 +1,5 @@
-import { GameStateType } from '../types/gameState';
-import { GameStatus } from '../types/gameStatus';
+import { GameStateType } from 'types/gameState';
+import { GameStatus } from 'types/gameStatus';
 
 const initGameState: GameStateType = {
 	gameStatus: GameStatus.lobby,
