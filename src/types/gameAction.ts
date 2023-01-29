@@ -14,7 +14,7 @@ export enum GameAction {
 }
 
 type MakeMovePayloadType = {
-	prevCard: CardFaceType | undefined;
+	prevCard: CardFaceType | null;
 	playerHandCards: CardItemType[];
 };
 

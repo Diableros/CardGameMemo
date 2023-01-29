@@ -6,8 +6,8 @@ const initGameState: GameStateType = {
 	difficult: 0,
 	gameStartTime: 0,
 	playerHandCards: [],
-	prevCard: undefined,
-	clickedCard: undefined,
+	prevCard: null,
+	clickedCard: null,
 };
 
 export default initGameState;

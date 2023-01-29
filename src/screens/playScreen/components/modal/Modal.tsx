@@ -5,7 +5,7 @@ import RestartButton from '../restartButton/RestartButton';
 import { getClockTime, getRealTime } from 'helpers/getGameTime';
 import winImg from 'img/win.png';
 import loseImg from 'img/lose.png';
-import { gsap } from 'gsap';
+import { fadeInModalTween } from 'helpers/animations';
 import './modal.scss';
 
 type ModalPropsType = {
@@ -29,26 +29,16 @@ const endGameTitle: GameStatusDecodeType = {
 
 const Modal = ({ gameStatus }: ModalPropsType) => {
 	const divRef = useRef<HTMLDivElement>(null);
+	const { gameStartTime } = useGameContext();
+	const { min, sec } = getClockTime(getRealTime(gameStartTime));
 
 	useLayoutEffect(() => {
-		const anim = gsap.fromTo(
-			divRef.current,
-			{ opacity: 0 },
-			{
-				delay: 1,
-				opacity: 1,
-				duration: 0.2,
-			}
-		);
+		const anim = fadeInModalTween(divRef.current);
 
 		return () => {
 			anim.kill();
 		};
-	}, [divRef]);
-
-	const { gameStartTime } = useGameContext();
-
-	const { min, sec } = getClockTime(getRealTime(gameStartTime));
+	});
 
 	return (
 		<div ref={divRef} className="modal">
