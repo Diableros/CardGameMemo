@@ -15,7 +15,7 @@ const LobbyScreen = () => {
 		return () => {
 			anim.kill();
 		};
-	}, [divRef]);
+	}, []);
 
 	return (
 		<div ref={divRef} className="start-screen">

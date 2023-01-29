@@ -34,7 +34,6 @@ const Alert = ({ children, showAlert, hideAlert }: AlertPropsType) => {
 				ease: 'power1',
 			});
 			anim.to(divRef.current, {
-				// delay: 5,
 				opacity: 0,
 				duration: 0.2,
 				display: 'none',
